@@ -1,0 +1,1 @@
+Windows Media Player和RealPlayer是常用的媒体播放器，它们的API结构和调用方法非常不同，现在你的应用需要同时支持调用这2种播放器的API。你要怎么设计？
