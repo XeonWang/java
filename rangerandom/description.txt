@@ -1,0 +1,1 @@
+Given a random number generator which can generate the number in range(1,5) uniformly. How can you use it to build a random number generator which can generate the number in range(1,7) uniformly?
