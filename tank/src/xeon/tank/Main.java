@@ -4,7 +4,9 @@ import xeon.tank.vehicle.TankManager;
 import xeon.tank.wall.WallManager;
 
 import javax.swing.*;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
 
 /**
  * User: xeon

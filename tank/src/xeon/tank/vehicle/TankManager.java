@@ -3,7 +3,8 @@ package xeon.tank.vehicle;
 import xeon.tank.abs.PaintAble;
 
 import javax.swing.*;
-import java.awt.*;
+import java.awt.Point;
+import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,5 +46,8 @@ public class TankManager implements PaintAble {
         }
     }
 
+    public List<Tank> getItems() {
+        return items;
+    }
 
 }

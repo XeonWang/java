@@ -3,7 +3,7 @@ package xeon.tank.vehicle;
 import xeon.tank.abs.AbstractComponent;
 
 import javax.swing.*;
-import java.awt.*;
+import java.awt.Point;
 
 /**
  * User: xeon

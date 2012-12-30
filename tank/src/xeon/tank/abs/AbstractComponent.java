@@ -1,7 +1,9 @@
 package xeon.tank.abs;
 
 import javax.swing.*;
-import java.awt.*;
+import java.awt.Graphics;
+import java.awt.Point;
+import java.awt.Image;
 
 /**
  * User: xeon

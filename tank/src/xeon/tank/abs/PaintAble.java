@@ -1,6 +1,6 @@
 package xeon.tank.abs;
 
-import java.awt.*;
+import java.awt.Graphics;
 
 /**
  * User: xeon

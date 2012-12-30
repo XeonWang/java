@@ -2,7 +2,8 @@ package xeon.tank.wall;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import java.awt.*;
+import java.awt.Image;
+import java.awt.Point;
 import java.io.File;
 import java.io.IOException;
 

@@ -6,6 +6,9 @@ package xeon.tank.abs;
  * Time: 7:34 PM
  */
 public interface Ciycle {
+
     void begin();
+
     void end();
+
 }

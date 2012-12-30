@@ -2,7 +2,8 @@ package xeon.tank.vehicle;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import java.awt.*;
+import java.awt.Point;
+import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
 

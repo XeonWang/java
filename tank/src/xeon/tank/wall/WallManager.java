@@ -3,7 +3,8 @@ package xeon.tank.wall;
 import xeon.tank.abs.PaintAble;
 
 import javax.swing.*;
-import java.awt.*;
+import java.awt.Graphics;
+import java.awt.Point;
 
 /**
  * User: xeon
