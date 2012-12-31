@@ -1,9 +1,13 @@
 package xeon.tank;
 
+import xeon.tank.abs.EventHandler;
+import xeon.tank.abs.Observer;
 import xeon.tank.abs.PaintAble;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JPanel;
+import java.awt.Graphics;
+import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,9 +17,10 @@ import java.util.List;
  * Time: 5:38 PM
  */
 
-class DrawPanel extends JPanel {
+public class DrawPanel extends JPanel implements EventHandler {
 
     private List<PaintAble> paintAbles = new ArrayList<PaintAble>();
+    private List<Observer> observers = new ArrayList<Observer>();
 
     public DrawPanel(int width, int height) {
         setSize(width, height);
@@ -31,6 +36,18 @@ class DrawPanel extends JPanel {
         for (PaintAble paintAble : paintAbles) {
             paintAble.setGraphics(g);
             paintAble.paint();
+        }
+    }
+
+    @Override
+    public void register(Observer observer) {
+        observers.add(observer);
+    }
+
+    @Override
+    public void processEvent(InputEvent event) {
+        for (Observer observer : observers) {
+            observer.update(event);
         }
     }
 }

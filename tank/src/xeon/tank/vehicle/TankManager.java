@@ -1,5 +1,6 @@
 package xeon.tank.vehicle;
 
+import xeon.tank.abs.EventHandler;
 import xeon.tank.abs.PaintAble;
 
 import javax.swing.*;
@@ -23,6 +24,9 @@ public class TankManager implements PaintAble {
         items = new ArrayList<Tank>();
         Tank tank = new DefaultTank(paper, new Point(400, 300), 40, 40);
         items.add(tank);
+        if (paper instanceof EventHandler) {
+            ((EventHandler) paper).register(tank);
+        }
     }
 
     @Override

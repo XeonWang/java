@@ -25,6 +25,9 @@ public class Main {
         DrawPanel drawPanel = new DrawPanel(600, 570);
         drawPanel.addComponent(new WallManager(drawPanel));
         drawPanel.addComponent(new TankManager(drawPanel));
+        drawPanel.setFocusable(true);
+        drawPanel.requestFocusInWindow();
+        drawPanel.addKeyListener(new OperateListener(drawPanel));
 
         frame.setJMenuBar(menuBar);
         frame.getContentPane().add(drawPanel, BorderLayout.CENTER);

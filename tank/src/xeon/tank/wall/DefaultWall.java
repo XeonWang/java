@@ -1,7 +1,7 @@
 package xeon.tank.wall;
 
 import javax.imageio.ImageIO;
-import javax.swing.*;
+import javax.swing.JComponent;
 import java.awt.Image;
 import java.awt.Point;
 import java.io.File;
