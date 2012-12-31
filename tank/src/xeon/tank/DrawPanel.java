@@ -4,10 +4,9 @@ import xeon.tank.abs.EventHandler;
 import xeon.tank.abs.Observer;
 import xeon.tank.abs.PaintAble;
 
-import javax.swing.JPanel;
-import java.awt.Graphics;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.InputEvent;
-import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 

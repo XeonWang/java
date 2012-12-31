@@ -18,4 +18,19 @@ public enum Direction {
     public int getValue() {
         return rotation;
     }
+
+    public Direction rotate(int rotation) {
+        int newRotation = (getValue() + rotation) % 360;
+        switch (newRotation) {
+            case 0:
+                return NORTH;
+            case 90:
+                return EAST;
+            case 180:
+                return SOUTH;
+            case 270:
+                return WEST;
+        }
+        return null;
+    }
 }

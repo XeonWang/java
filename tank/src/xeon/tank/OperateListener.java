@@ -2,10 +2,8 @@ package xeon.tank;
 
 import xeon.tank.abs.EventHandler;
 
-import javax.swing.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
 /**
  * User: xeon
@@ -29,42 +27,12 @@ public class OperateListener extends KeyAdapter {
     /** Handle the key-pressed event from the text field. */
     public void keyPressed(KeyEvent e) {
         displayInfo(e, "KEY PRESSED: ");
-
-        switch (e.getKeyCode()) {
-            case 37 :
-                leftKeyPressed(e);
-                break;
-            case 38 :
-                upKeyPressed(e);
-                break;
-            case 39 :
-                rightKeyPressed(e);
-                break;
-            case 40 :
-                downKeyPressed(e);
-                break;
-        }
+        handler.processEvent(e);
     }
 
     /** Handle the key-released event from the text field. */
     public void keyReleased(KeyEvent e) {
         displayInfo(e, "KEY RELEASED: ");
-    }
-
-    private void upKeyPressed(KeyEvent e) {
-
-    }
-
-    private void downKeyPressed(KeyEvent e) {
-        handler.processEvent(e);
-    }
-
-    private void leftKeyPressed(KeyEvent e) {
-
-    }
-
-    private void rightKeyPressed(KeyEvent e) {
-
     }
 
     private void displayInfo(KeyEvent e, String keyStatus){

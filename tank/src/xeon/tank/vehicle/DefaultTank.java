@@ -4,6 +4,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -29,8 +30,4 @@ public class DefaultTank extends Tank {
         setImage(image);
     }
 
-    @Override
-    public void update(InputEvent event) {
-        gotoPosition(new Point(position.x, position.y + height/2));
-    }
 }

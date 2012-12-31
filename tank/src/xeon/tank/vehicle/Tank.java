@@ -7,6 +7,8 @@ import xeon.tank.util.ImageHelper;
 
 import javax.swing.JComponent;
 import java.awt.Point;
+import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
 
 /**
  * User: xeon
@@ -15,7 +17,7 @@ import java.awt.Point;
  */
 public abstract class Tank extends AbstractComponent implements Observer {
 
-    private int rotation = 0;
+    private Direction direction = Direction.NORTH;
 
     public Tank(JComponent paper, Point position, int width, int height) {
         super(position, paper, width, height);
@@ -28,19 +30,21 @@ public abstract class Tank extends AbstractComponent implements Observer {
     }
 
     public void pointTo(Direction direction) {
-        rotation %= 360;
-        int rotateDegree = rotation - direction.getValue();
+        int rotateDegree = direction.getValue() - (this.direction.getValue() % 360);
+        rotateDegree = rotateDegree < 0 ? rotateDegree + 360 : rotateDegree;
         switch (rotateDegree){
             case 90:
-                rotate90ToRight();
+                setImage(ImageHelper.rotate90ToRight(getImage()));
                 break;
             case 180:
-                rotate180();
+                setImage(ImageHelper.rotate180(getImage()));
                 break;
             case 270:
-                rotate90ToLeft();
+                setImage(ImageHelper.rotate90ToLeft(getImage()));
                 break;
         }
+        this.direction = this.direction.rotate(rotateDegree);
+        clean();
         paint();
     }
 
@@ -50,19 +54,41 @@ public abstract class Tank extends AbstractComponent implements Observer {
         }
     }
 
-    private void rotate180() {
-        setImage(ImageHelper.rotate180(getImage()));
-        rotation += 180;
+    @Override
+    public void update(InputEvent event) {
+        gotoPosition(new Point(position.x, position.y + height/2));
+        if (event instanceof KeyEvent) {
+            switch (((KeyEvent)event).getKeyCode()) {
+                case 37 :
+                    leftKeyPressed();
+                    break;
+                case 38 :
+                    upKeyPressed();
+                    break;
+                case 39 :
+                    rightKeyPressed();
+                    break;
+                case 40 :
+                    downKeyPressed();
+                    break;
+            }
+        }
     }
 
-    private void rotate90ToLeft() {
-        setImage(ImageHelper.rotate90ToLeft(getImage()));
-        rotation += 270;
+    private void upKeyPressed() {
+        pointTo(Direction.NORTH);
     }
 
-    private void rotate90ToRight() {
-        setImage(ImageHelper.rotate90ToRight(getImage()));
-        rotation += 90;
+    private void downKeyPressed() {
+        pointTo(Direction.SOUTH);
+    }
+
+    private void leftKeyPressed() {
+        pointTo(Direction.WEST);
+    }
+
+    private void rightKeyPressed() {
+        pointTo(Direction.EAST);
     }
 
 }

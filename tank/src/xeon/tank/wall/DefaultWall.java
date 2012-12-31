@@ -1,9 +1,9 @@
 package xeon.tank.wall;
 
 import javax.imageio.ImageIO;
-import javax.swing.JComponent;
-import java.awt.Image;
-import java.awt.Point;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
@@ -14,7 +14,7 @@ import java.io.IOException;
  */
 public class DefaultWall extends Wall {
 
-    public static Image image;
+    public static BufferedImage image;
     static {
         try {
             image = ImageIO.read(new File("sources/defaultWall.jpg"));
