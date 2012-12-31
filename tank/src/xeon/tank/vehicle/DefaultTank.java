@@ -2,12 +2,11 @@ package xeon.tank.vehicle;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import java.awt.Point;
-import java.awt.Image;
+import java.awt.*;
 import java.awt.event.InputEvent;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.Observable;
 
 /**
  * User: xeon
@@ -16,7 +15,7 @@ import java.util.Observable;
  */
 public class DefaultTank extends Tank {
 
-    public static Image image;
+    public static BufferedImage image;
     static {
         try {
             image = ImageIO.read(new File("sources/defaultTank.png"));

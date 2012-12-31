@@ -2,9 +2,8 @@ package xeon.tank.abs;
 
 
 import javax.swing.*;
-import java.awt.Graphics;
-import java.awt.Point;
-import java.awt.Image;
+import java.awt.*;
+import java.awt.image.BufferedImage;
 
 /**
  * User: xeon
@@ -18,7 +17,7 @@ public abstract class AbstractComponent implements PaintAble, Ciycle {
     protected Graphics graphics;
     protected int width;
     protected int height;
-    protected Image image;
+    protected BufferedImage image;
 
     protected AbstractComponent(Point position, JComponent paper, int width, int height) {
         this.position = position;
@@ -49,11 +48,11 @@ public abstract class AbstractComponent implements PaintAble, Ciycle {
         paper.repaint(position.x, position.y, position.x + width, position.y + height);
     }
 
-    protected Image getImage() {
+    protected BufferedImage getImage() {
         return image;
     }
 
-    protected void setImage(Image image) {
+    protected void setImage(BufferedImage image) {
         this.image = image;
     }
 
