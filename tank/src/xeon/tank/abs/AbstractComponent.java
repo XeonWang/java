@@ -29,7 +29,7 @@ public abstract class AbstractComponent implements PaintAble, Ciycle {
     @Override
     public void paint() {
         graphics.drawImage(getImage(), position.x, position.y, width, height, null);
-        paper.repaint(position.x, position.y, position.x + width, position.y +height);
+        paper.repaint(position.x, position.y, width, height);
     }
 
     @Override
@@ -45,7 +45,7 @@ public abstract class AbstractComponent implements PaintAble, Ciycle {
     @Override
     public void clean() {
         graphics.clearRect(position.x, position.y, width, height);
-        paper.repaint(position.x, position.y, position.x + width, position.y + height);
+        paper.repaint(position.x, position.y, width, height);
     }
 
     protected BufferedImage getImage() {

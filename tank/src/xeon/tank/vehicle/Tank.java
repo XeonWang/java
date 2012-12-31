@@ -56,7 +56,7 @@ public abstract class Tank extends AbstractComponent implements Observer {
 
     @Override
     public void update(InputEvent event) {
-        gotoPosition(new Point(position.x, position.y + height/2));
+//        gotoPosition(new Point(position.x, position.y + height/2));
         if (event instanceof KeyEvent) {
             switch (((KeyEvent)event).getKeyCode()) {
                 case 37 :
@@ -76,19 +76,35 @@ public abstract class Tank extends AbstractComponent implements Observer {
     }
 
     private void upKeyPressed() {
-        pointTo(Direction.NORTH);
+        if (this.direction != Direction.NORTH){
+            pointTo(Direction.NORTH);
+        } else {
+            gotoPosition(new Point(position.x, position.y - height/2));
+        }
     }
 
     private void downKeyPressed() {
-        pointTo(Direction.SOUTH);
+        if (this.direction != Direction.SOUTH) {
+            pointTo(Direction.SOUTH);
+        } else {
+            gotoPosition(new Point(position.x, position.y + height/2));
+        }
     }
 
     private void leftKeyPressed() {
-        pointTo(Direction.WEST);
+        if (this.direction != Direction.WEST) {
+            pointTo(Direction.WEST);
+        } else {
+            gotoPosition(new Point(position.x - width/2, position.y));
+        }
     }
 
     private void rightKeyPressed() {
-        pointTo(Direction.EAST);
+        if (this.direction != Direction.EAST) {
+            pointTo(Direction.EAST);
+        } else {
+            gotoPosition(new Point(position.x + width/2, position.y));
+        }
     }
 
 }

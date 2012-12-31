@@ -26,13 +26,13 @@ public class OperateListener extends KeyAdapter {
 
     /** Handle the key-pressed event from the text field. */
     public void keyPressed(KeyEvent e) {
-        displayInfo(e, "KEY PRESSED: ");
+//        displayInfo(e, "KEY PRESSED: ");
         handler.processEvent(e);
     }
 
     /** Handle the key-released event from the text field. */
     public void keyReleased(KeyEvent e) {
-        displayInfo(e, "KEY RELEASED: ");
+//        displayInfo(e, "KEY RELEASED: ");
     }
 
     private void displayInfo(KeyEvent e, String keyStatus){
