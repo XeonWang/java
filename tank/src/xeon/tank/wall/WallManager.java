@@ -83,9 +83,9 @@ public class WallManager implements MoveProcesser {
         for (int i = 1; i < widthMul + 1; i++) {
             for (int j = 1; j < heightMul + 1; j++) {
                 if (isClash(position.x, position.y)
-                        || isClash(position.x + itemWidth * i, position.y)
-                        || isClash(position.x, position.y + itemHeight * j)
-                        || isClash(position.x + itemWidth * i, position.y + itemHeight * j)) {
+                        || isClash(position.x + itemWidth * i - 1, position.y)
+                        || isClash(position.x, position.y + itemHeight * j - 1)
+                        || isClash(position.x + itemWidth * i - 1, position.y + itemHeight * j - 1)) {
                     comp.denied();
                     return;
                 }
