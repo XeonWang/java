@@ -8,5 +8,7 @@ import java.awt.Point;
  * Time: 11:42 AM
  */
 public interface MoveProcesser extends PaintAble{
-    public Boolean processMove(MoveAbleComponent comp, Point position);
+    public void processMove(MoveAbleComponent comp, Point position);
+
+    public void setNextProcesser(MoveProcesser nextProcesser);
 }

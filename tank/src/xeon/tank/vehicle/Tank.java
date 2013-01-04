@@ -75,7 +75,7 @@ public abstract class Tank extends MoveAbleComponent implements Observer {
         if (this.direction != Direction.NORTH){
             pointTo(Direction.NORTH);
         } else {
-            gotoPosition(new Point(position.x, position.y - height/2));
+            processMove(new Point(position.x, position.y - height/2));
         }
     }
 
@@ -83,7 +83,7 @@ public abstract class Tank extends MoveAbleComponent implements Observer {
         if (this.direction != Direction.SOUTH) {
             pointTo(Direction.SOUTH);
         } else {
-            gotoPosition(new Point(position.x, position.y + height/2));
+            processMove(new Point(position.x, position.y + height/2));
         }
     }
 
@@ -91,7 +91,7 @@ public abstract class Tank extends MoveAbleComponent implements Observer {
         if (this.direction != Direction.WEST) {
             pointTo(Direction.WEST);
         } else {
-            gotoPosition(new Point(position.x - width/2, position.y));
+            processMove(new Point(position.x - width/2, position.y));
         }
     }
 
@@ -99,7 +99,7 @@ public abstract class Tank extends MoveAbleComponent implements Observer {
         if (this.direction != Direction.EAST) {
             pointTo(Direction.EAST);
         } else {
-            gotoPosition(new Point(position.x + width/2, position.y));
+            processMove(new Point(position.x + width/2, position.y));
         }
     }
 

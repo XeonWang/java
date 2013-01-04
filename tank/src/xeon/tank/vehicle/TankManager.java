@@ -1,7 +1,10 @@
 package xeon.tank.vehicle;
 
 import xeon.tank.DrawPanel;
-import xeon.tank.abs.*;
+import xeon.tank.abs.EventHandler;
+import xeon.tank.abs.MoveAbleComponent;
+import xeon.tank.abs.MoveAbleManager;
+import xeon.tank.abs.MoveProcesser;
 
 import java.awt.Point;
 import java.util.ArrayList;
@@ -24,9 +27,13 @@ public class TankManager extends MoveAbleManager implements MoveProcesser {
     }
 
     @Override
-    public Boolean processMove(MoveAbleComponent comp, Point position) {
+    public void processMove(MoveAbleComponent comp, Point position) {
         //TODO
-        return true;
+        if (nextProcesser != null) {
+            nextProcesser.processMove(comp, position);
+        } else {
+            comp.move(position);
+        }
     }
 
 }

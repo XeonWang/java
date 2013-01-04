@@ -1,7 +1,9 @@
 package xeon.tank;
 
+import xeon.tank.abs.MoveProcesser;
 import xeon.tank.vehicle.TankManager;
 import xeon.tank.wall.WallManager;
+import xeon.tank.abs.PaintAble;
 
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
@@ -25,9 +27,12 @@ public class Main {
         menuBar.setPreferredSize(new Dimension(600, 30));
 
         DrawPanel drawPanel = new DrawPanel(600, 570);
-        drawPanel.addComponent(new WallManager(drawPanel));
-        drawPanel.addComponent(new TankManager(drawPanel));
-        drawPanel.initComponent();
+        MoveProcesser wallManager = new WallManager(drawPanel);
+        drawPanel.addComponent(wallManager);
+        TankManager tankManager = new TankManager(drawPanel);
+        drawPanel.addComponent(tankManager);
+        wallManager.setNextProcesser(tankManager);
+        tankManager.installMoveProcesser(wallManager);
         drawPanel.setFocusable(true);
         drawPanel.requestFocusInWindow();
         drawPanel.addKeyListener(new OperateListener(drawPanel));

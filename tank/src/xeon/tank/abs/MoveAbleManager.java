@@ -1,7 +1,6 @@
 package xeon.tank.abs;
 
 import xeon.tank.DrawPanel;
-import xeon.tank.vehicle.Tank;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -16,26 +15,16 @@ public abstract class MoveAbleManager implements MoveProcesser {
 
     private DrawPanel paper;
     protected List<MoveAbleComponent> items;
+    protected MoveProcesser nextProcesser;
 
     protected MoveAbleManager(DrawPanel paper) {
         this.paper = paper;
     }
 
-    public void installMoveProcesser() {
-        List<MoveProcesser> processers = moveProcessersfilter(paper.getPaintAbles());
+    public void installMoveProcesser(MoveProcesser processer) {
         for (MoveAbleComponent comp : items) {
-            comp.setProcessers(processers);
+            comp.setProcesser(processer);
         }
-    }
-
-    private List<MoveProcesser> moveProcessersfilter(List<PaintAble> paintAbles) {
-        List<MoveProcesser> processers = new ArrayList<MoveProcesser>();
-        for (PaintAble paintAble : paintAbles) {
-            if (paintAble instanceof MoveProcesser) {
-                processers.add((MoveProcesser) paintAble);
-            }
-        }
-        return processers;
     }
 
     @Override
@@ -61,5 +50,21 @@ public abstract class MoveAbleManager implements MoveProcesser {
 
     public List<MoveAbleComponent> getItems() {
         return items;
+    }
+
+    public void setNextProcesser(MoveProcesser nextProcesser) {
+        this.nextProcesser = nextProcesser;
+    }
+
+    protected boolean ifClash(MoveAbleComponent mover, Point position, AbstractComponent target) {
+        return inScope(position.x, position.y, target)
+                || inScope(position.x + mover.width, position.y, target)
+                || inScope(position.x, position.y + mover.height, target)
+                || inScope(position.x + mover.width, position.y + mover.height, target);
+    }
+
+    private boolean inScope(int x, int y, AbstractComponent target) {
+        return x > target.getPosition().x && x < target.getPosition().x + target.width
+                && y > target.getPosition().y && y < target.getPosition().y + target.height;
     }
 }

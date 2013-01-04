@@ -30,4 +30,13 @@ public class DefaultTank extends Tank {
         setImage(image);
     }
 
+    @Override
+    public void denied() {
+        //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public void destroy() {
+        //To change body of implemented methods use File | Settings | File Templates.
+    }
 }

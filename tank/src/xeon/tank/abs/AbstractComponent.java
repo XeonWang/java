@@ -66,4 +66,16 @@ public abstract class AbstractComponent implements PaintAble, Ciycle {
     public void setGraphics(Graphics graphics) {
         this.graphics = graphics;
     }
+
+    public Point getPosition() {
+        return position;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
 }

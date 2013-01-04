@@ -52,11 +52,4 @@ public class DrawPanel extends JPanel implements EventHandler {
         return paintAbles;
     }
 
-    public void initComponent() {
-        for (PaintAble paintAble : paintAbles) {
-            if (paintAble instanceof MoveAbleManager) {
-                ((MoveAbleManager) paintAble).installMoveProcesser();
-            }
-        }
-    }
 }

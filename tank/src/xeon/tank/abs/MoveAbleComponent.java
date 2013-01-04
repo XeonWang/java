@@ -2,9 +2,7 @@ package xeon.tank.abs;
 
 import xeon.tank.DrawPanel;
 
-import javax.swing.JComponent;
 import java.awt.Point;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,36 +12,28 @@ import java.util.List;
  */
 public abstract class MoveAbleComponent extends AbstractComponent {
 
-    private List<MoveProcesser> processers = null;
+    private MoveProcesser processer = null;
 
     protected MoveAbleComponent(Point position, DrawPanel paper, int width, int height) {
         super(position, paper, width, height);
     }
 
-    public void gotoPosition(Point position) {
-        if (processMove(position) != null) {
-            clean();
-//          setPosition(position);
-            paint();
-        }
+    public void processMove(Point position) {
+        processer.processMove(this, position);
     }
 
-    protected MoveAbleComponent processMove(Point position) {
-        Boolean result = true;
-        for (MoveProcesser processer : processers) {
-            if (result == null) return null;
-            if (result != false) {
-                result = processer.processMove(this, position);
-            } else {
-                return this;
-            }
-        }
-        this.setPosition(position);
-        return this;
+    public void setProcesser(MoveProcesser processer) {
+        this.processer = processer;
     }
 
-    public void setProcessers(List<MoveProcesser> processers) {
-        this.processers = processers;
+    public void move(Point position) {
+        clean();
+        setPosition(position);
+        paint();
     }
+
+    public abstract void denied();
+
+    public abstract void destroy();
 
 }

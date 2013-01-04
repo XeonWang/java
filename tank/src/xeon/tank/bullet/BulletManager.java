@@ -19,8 +19,12 @@ public class BulletManager extends MoveAbleManager implements MoveProcesser {
     }
 
     @Override
-    public Boolean processMove(MoveAbleComponent comp, Point position) {
+    public void processMove(MoveAbleComponent comp, Point position) {
         //TODO
-        return null;
+        if (nextProcesser != null) {
+            nextProcesser.processMove(comp, position);
+        } else {
+            comp.move(position);
+        }
     }
 }
