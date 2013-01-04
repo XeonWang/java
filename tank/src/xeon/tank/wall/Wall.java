@@ -1,5 +1,6 @@
 package xeon.tank.wall;
 
+import xeon.tank.DrawPanel;
 import xeon.tank.abs.AbstractComponent;
 
 import javax.swing.*;
@@ -12,7 +13,7 @@ import java.awt.Point;
  */
 public abstract class Wall extends AbstractComponent {
 
-    public Wall(JComponent paper, Point position, int width, int height) {
+    public Wall(DrawPanel paper, Point position, int width, int height) {
         super(position, paper, width, height);
     }
 

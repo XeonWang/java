@@ -3,7 +3,9 @@ package xeon.tank;
 import xeon.tank.vehicle.TankManager;
 import xeon.tank.wall.WallManager;
 
-import javax.swing.*;
+import javax.swing.JFrame;
+import javax.swing.JMenuBar;
+import javax.swing.SwingUtilities;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -25,6 +27,7 @@ public class Main {
         DrawPanel drawPanel = new DrawPanel(600, 570);
         drawPanel.addComponent(new WallManager(drawPanel));
         drawPanel.addComponent(new TankManager(drawPanel));
+        drawPanel.initComponent();
         drawPanel.setFocusable(true);
         drawPanel.requestFocusInWindow();
         drawPanel.addKeyListener(new OperateListener(drawPanel));

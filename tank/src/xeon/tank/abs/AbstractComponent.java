@@ -1,8 +1,11 @@
 package xeon.tank.abs;
 
 
-import javax.swing.*;
-import java.awt.*;
+import xeon.tank.DrawPanel;
+
+import javax.swing.JComponent;
+import java.awt.Graphics;
+import java.awt.Point;
 import java.awt.image.BufferedImage;
 
 /**
@@ -13,13 +16,13 @@ import java.awt.image.BufferedImage;
 public abstract class AbstractComponent implements PaintAble, Ciycle {
 
     protected Point position;
-    protected JComponent paper;
+    protected DrawPanel paper;
     protected Graphics graphics;
     protected int width;
     protected int height;
     protected BufferedImage image;
 
-    protected AbstractComponent(Point position, JComponent paper, int width, int height) {
+    protected AbstractComponent(Point position, DrawPanel paper, int width, int height) {
         this.position = position;
         this.paper = paper;
         this.width = width;

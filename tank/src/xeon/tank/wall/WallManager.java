@@ -1,5 +1,8 @@
 package xeon.tank.wall;
 
+import xeon.tank.DrawPanel;
+import xeon.tank.abs.MoveAbleComponent;
+import xeon.tank.abs.MoveProcesser;
 import xeon.tank.abs.PaintAble;
 
 import javax.swing.*;
@@ -11,14 +14,14 @@ import java.awt.Point;
  * Date: 12/30/12
  * Time: 5:25 PM
  */
-public class WallManager implements PaintAble {
+public class WallManager implements MoveProcesser {
 
     private Wall[][] items;
-    private JComponent paper;
+    private DrawPanel paper;
     private static int itemWidth = 20;
     private static int itemHeight = 20;
 
-    public WallManager(JComponent paper) {
+    public WallManager(DrawPanel paper) {
         this.paper = paper;
         items = new Wall[5][10];
         for (int i = 0; i < 9; i++) {
@@ -66,5 +69,11 @@ public class WallManager implements PaintAble {
             items[line][column].end();
             items[line][column] = null;
         }
+    }
+
+    @Override
+    public Boolean processMove(MoveAbleComponent comp, Point position) {
+        //TODO
+        return true;
     }
 }

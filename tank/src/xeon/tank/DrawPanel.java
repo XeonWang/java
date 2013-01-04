@@ -1,11 +1,9 @@
 package xeon.tank;
 
-import xeon.tank.abs.EventHandler;
-import xeon.tank.abs.Observer;
-import xeon.tank.abs.PaintAble;
+import xeon.tank.abs.*;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JPanel;
+import java.awt.Graphics;
 import java.awt.event.InputEvent;
 import java.util.ArrayList;
 import java.util.List;
@@ -47,6 +45,18 @@ public class DrawPanel extends JPanel implements EventHandler {
     public void processEvent(InputEvent event) {
         for (Observer observer : observers) {
             observer.update(event);
+        }
+    }
+
+    public List<PaintAble> getPaintAbles() {
+        return paintAbles;
+    }
+
+    public void initComponent() {
+        for (PaintAble paintAble : paintAbles) {
+            if (paintAble instanceof MoveAbleManager) {
+                ((MoveAbleManager) paintAble).installMoveProcesser();
+            }
         }
     }
 }

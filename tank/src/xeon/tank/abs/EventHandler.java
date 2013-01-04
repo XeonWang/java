@@ -1,7 +1,6 @@
 package xeon.tank.abs;
 
 import java.awt.event.InputEvent;
-import java.awt.event.KeyEvent;
 
 /**
  * User: xeon

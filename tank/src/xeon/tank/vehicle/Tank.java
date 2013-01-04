@@ -2,7 +2,9 @@ package xeon.tank.vehicle;
 
 import xeon.tank.abs.AbstractComponent;
 import xeon.tank.DrawPanel;
+import xeon.tank.abs.MoveAbleComponent;
 import xeon.tank.abs.Observer;
+
 import xeon.tank.util.ImageHelper;
 
 import javax.swing.JComponent;
@@ -15,18 +17,12 @@ import java.awt.event.KeyEvent;
  * Date: 12/30/12
  * Time: 9:35 PM
  */
-public abstract class Tank extends AbstractComponent implements Observer {
+public abstract class Tank extends MoveAbleComponent implements Observer {
 
     private Direction direction = Direction.NORTH;
 
-    public Tank(JComponent paper, Point position, int width, int height) {
+    public Tank(DrawPanel paper, Point position, int width, int height) {
         super(position, paper, width, height);
-    }
-
-    public void gotoPosition(Point position) {
-        clean();
-        setPosition(position);
-        paint();
     }
 
     public void pointTo(Direction direction) {

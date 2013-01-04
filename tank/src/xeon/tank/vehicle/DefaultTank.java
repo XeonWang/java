@@ -1,8 +1,10 @@
 package xeon.tank.vehicle;
 
+import xeon.tank.DrawPanel;
+
 import javax.imageio.ImageIO;
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JComponent;
+import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -23,7 +25,7 @@ public class DefaultTank extends Tank {
         }
     }
 
-    public DefaultTank(JComponent paper, Point position, int width, int height) {
+    public DefaultTank(DrawPanel paper, Point position, int width, int height) {
         super(paper, position, width, height);
         setImage(image);
     }

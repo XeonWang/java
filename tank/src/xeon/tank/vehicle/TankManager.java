@@ -1,27 +1,21 @@
 package xeon.tank.vehicle;
 
-import xeon.tank.abs.EventHandler;
-import xeon.tank.abs.PaintAble;
+import xeon.tank.DrawPanel;
+import xeon.tank.abs.*;
 
-import javax.swing.*;
 import java.awt.Point;
-import java.awt.Graphics;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * User: xeon
  * Date: 12/30/12
  * Time: 10:20 PM
  */
-public class TankManager implements PaintAble {
+public class TankManager extends MoveAbleManager implements MoveProcesser {
 
-    private List<Tank> items;
-    private JComponent paper;
-
-    public TankManager(JComponent paper) {
-        this.paper = paper;
-        items = new ArrayList<Tank>();
+    public TankManager(DrawPanel paper) {
+        super(paper);
+        items = new ArrayList<MoveAbleComponent>();
         Tank tank = new DefaultTank(paper, new Point(400, 300), 40, 40);
         items.add(tank);
         if (paper instanceof EventHandler) {
@@ -30,28 +24,9 @@ public class TankManager implements PaintAble {
     }
 
     @Override
-    public void paint() {
-        for (Tank tank : items) {
-            tank.begin();
-        }
-    }
-
-    @Override
-    public void clean() {
-        for (Tank tank : items) {
-            tank.clean();
-        }
-    }
-
-    @Override
-    public void setGraphics(Graphics graphics) {
-        for (Tank tank : items) {
-            tank.setGraphics(graphics);
-        }
-    }
-
-    public List<Tank> getItems() {
-        return items;
+    public Boolean processMove(MoveAbleComponent comp, Point position) {
+        //TODO
+        return true;
     }
 
 }
