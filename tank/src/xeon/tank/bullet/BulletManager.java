@@ -4,8 +4,10 @@ import xeon.tank.DrawPanel;
 import xeon.tank.abs.MoveAbleComponent;
 import xeon.tank.abs.MoveAbleManager;
 import xeon.tank.abs.MoveProcesser;
+import xeon.tank.vehicle.Tank;
 
 import java.awt.Point;
+import java.util.ArrayList;
 
 /**
  * User: xeon
@@ -14,8 +16,17 @@ import java.awt.Point;
  */
 public class BulletManager extends MoveAbleManager implements MoveProcesser {
 
-    protected BulletManager(DrawPanel paper) {
+    public BulletManager(DrawPanel paper) {
         super(paper);
+        items = new ArrayList<MoveAbleComponent>();
+    }
+
+    public void createBullet(Tank tank) {
+        Bullet bullet = new DefaultBullet(new Point(tank.getPosition().x + tank.getWidth()/2 - 5, tank.getPosition().y), getPaper(), 10, 20, tank.getDirection());
+        bullet.setProcesser(getCompProcesser());
+        bullet.setGraphics(getCompGraphics());
+        items.add(bullet);
+        bullet.go();
     }
 
     @Override

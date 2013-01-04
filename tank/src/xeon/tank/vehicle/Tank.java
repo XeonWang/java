@@ -4,13 +4,16 @@ import xeon.tank.abs.AbstractComponent;
 import xeon.tank.DrawPanel;
 import xeon.tank.abs.MoveAbleComponent;
 import xeon.tank.abs.Observer;
+import xeon.tank.abs.PaintAble;
 
+import xeon.tank.bullet.BulletManager;
 import xeon.tank.util.ImageHelper;
 
 import javax.swing.JComponent;
 import java.awt.Point;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
+import java.util.List;
 
 /**
  * User: xeon
@@ -55,6 +58,9 @@ public abstract class Tank extends MoveAbleComponent implements Observer {
 //        gotoPosition(new Point(position.x, position.y + height/2));
         if (event instanceof KeyEvent) {
             switch (((KeyEvent)event).getKeyCode()) {
+                case 32 :
+                    spaceKeyPressed();
+                    break;
                 case 37 :
                     leftKeyPressed();
                     break;
@@ -67,6 +73,14 @@ public abstract class Tank extends MoveAbleComponent implements Observer {
                 case 40 :
                     downKeyPressed();
                     break;
+            }
+        }
+    }
+
+    private void spaceKeyPressed() {
+        for (PaintAble paintAble : paper.getPaintAbles()) {
+            if (paintAble instanceof BulletManager) {
+                ((BulletManager) paintAble).createBullet(this);
             }
         }
     }
@@ -103,4 +117,7 @@ public abstract class Tank extends MoveAbleComponent implements Observer {
         }
     }
 
+    public Direction getDirection() {
+        return direction;
+    }
 }

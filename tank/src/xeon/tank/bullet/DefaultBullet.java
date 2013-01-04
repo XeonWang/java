@@ -1,6 +1,7 @@
 package xeon.tank.bullet;
 
 import xeon.tank.DrawPanel;
+import xeon.tank.vehicle.Direction;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -26,8 +27,8 @@ public class DefaultBullet extends Bullet {
         }
     }
 
-    public DefaultBullet(Point position, DrawPanel paper, int width, int height) {
-        super(position, paper, width, height);
+    public DefaultBullet(Point position, DrawPanel paper, int width, int height, Direction direction) {
+        super(position, paper, width, height, direction);
         setImage(image);
     }
 

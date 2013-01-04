@@ -16,12 +16,15 @@ public abstract class MoveAbleManager implements MoveProcesser {
     private DrawPanel paper;
     protected List<MoveAbleComponent> items;
     protected MoveProcesser nextProcesser;
+    private MoveProcesser compProcesser;
+    private Graphics compGraphics;
 
     protected MoveAbleManager(DrawPanel paper) {
         this.paper = paper;
     }
 
     public void installMoveProcesser(MoveProcesser processer) {
+        this.compProcesser = processer;
         for (MoveAbleComponent comp : items) {
             comp.setProcesser(processer);
         }
@@ -36,15 +39,16 @@ public abstract class MoveAbleManager implements MoveProcesser {
 
     @Override
     public void clean() {
-        for (MoveAbleComponent tank : items) {
-            tank.clean();
+        for (MoveAbleComponent comp : items) {
+            comp.clean();
         }
     }
 
     @Override
     public void setGraphics(Graphics graphics) {
-        for (MoveAbleComponent tank : items) {
-            tank.setGraphics(graphics);
+        compGraphics = graphics;
+        for (MoveAbleComponent comp : items) {
+            comp.setGraphics(graphics);
         }
     }
 
@@ -66,5 +70,17 @@ public abstract class MoveAbleManager implements MoveProcesser {
     private boolean inScope(int x, int y, AbstractComponent target) {
         return x > target.getPosition().x && x < target.getPosition().x + target.width
                 && y > target.getPosition().y && y < target.getPosition().y + target.height;
+    }
+
+    public DrawPanel getPaper() {
+        return paper;
+    }
+
+    protected MoveProcesser getCompProcesser() {
+        return compProcesser;
+    }
+
+    protected Graphics getCompGraphics() {
+        return compGraphics;
     }
 }

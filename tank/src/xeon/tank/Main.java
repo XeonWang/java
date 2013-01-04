@@ -1,6 +1,7 @@
 package xeon.tank;
 
 import xeon.tank.abs.MoveProcesser;
+import xeon.tank.bullet.BulletManager;
 import xeon.tank.vehicle.TankManager;
 import xeon.tank.wall.WallManager;
 import xeon.tank.abs.PaintAble;
@@ -31,8 +32,11 @@ public class Main {
         drawPanel.addComponent(wallManager);
         TankManager tankManager = new TankManager(drawPanel);
         drawPanel.addComponent(tankManager);
+        BulletManager bulletManager = new BulletManager(drawPanel);
+        drawPanel.addComponent(bulletManager);
         wallManager.setNextProcesser(tankManager);
         tankManager.installMoveProcesser(wallManager);
+        bulletManager.installMoveProcesser(wallManager);
         drawPanel.setFocusable(true);
         drawPanel.requestFocusInWindow();
         drawPanel.addKeyListener(new OperateListener(drawPanel));
