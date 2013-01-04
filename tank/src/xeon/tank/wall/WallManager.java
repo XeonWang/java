@@ -3,9 +3,7 @@ package xeon.tank.wall;
 import xeon.tank.DrawPanel;
 import xeon.tank.abs.MoveAbleComponent;
 import xeon.tank.abs.MoveProcesser;
-import xeon.tank.abs.PaintAble;
 
-import javax.swing.*;
 import java.awt.Graphics;
 import java.awt.Point;
 
@@ -79,17 +77,28 @@ public class WallManager implements MoveProcesser {
 
         double widthMul = comp.getWidth() / (double)itemWidth;
         double heightMul = comp.getHeight() / (double)itemHeight;
-
-        for (int i = 1; i < widthMul + 1; i++) {
-            for (int j = 1; j < heightMul + 1; j++) {
-                if (isClash(position.x, position.y)
-                        || isClash(position.x + itemWidth * i - 1, position.y)
-                        || isClash(position.x, position.y + itemHeight * j - 1)
-                        || isClash(position.x + itemWidth * i - 1, position.y + itemHeight * j - 1)) {
-                    comp.denied();
-                    return;
+        try {
+            for (int i = 1; i < widthMul + 1; i++) {
+                for (int j = 1; j < heightMul + 1; j++) {
+                    Wall wall = ifClash(position.x, position.y);
+                    if (wall == null) {
+                        wall = ifClash(position.x + itemWidth * i - 1, position.y);
+                    }
+                    if (wall == null) {
+                        wall = ifClash(position.x, position.y + itemHeight * j - 1);
+                    }
+                    if (wall == null) {
+                        wall = ifClash(position.x + itemWidth * i - 1, position.y + itemHeight * j - 1);
+                    }
+                    if (wall != null) {
+                        wall.processMove(comp, position);
+                        return;
+                    }
                 }
             }
+        } catch (ArrayIndexOutOfBoundsException e) {
+            comp.denied();
+            return;
         }
 
         if (nextProcesser != null) {
@@ -103,13 +112,7 @@ public class WallManager implements MoveProcesser {
         this.nextProcesser = nextProcesser;
     }
 
-    private boolean isClash(int x, int y) {
-        Wall wall;
-        try {
-            wall = items[y / itemHeight][x / itemWidth];
-        } catch (ArrayIndexOutOfBoundsException e) {
-            return true;
-        }
-        return wall != null;
+    private Wall ifClash(int x, int y) {
+        return items[y / itemHeight][x / itemWidth];
     }
 }

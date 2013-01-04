@@ -1,6 +1,8 @@
 package xeon.tank.wall;
 
 import xeon.tank.DrawPanel;
+import xeon.tank.abs.MoveAbleComponent;
+import xeon.tank.abs.MoveProcesser;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -30,4 +32,13 @@ public class DefaultWall extends Wall {
         setImage(image);
     }
 
+    @Override
+    public void processMove(MoveAbleComponent comp, Point position) {
+        comp.denied();
+    }
+
+    @Override
+    public void setNextProcesser(MoveProcesser nextProcesser) {
+        throw new UnsupportedOperationException();
+    }
 }
