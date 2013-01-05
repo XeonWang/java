@@ -22,9 +22,10 @@ public class BulletManager extends MoveAbleManager implements MoveProcesser {
     }
 
     public void createBullet(Tank tank) {
-        Bullet bullet = new DefaultBullet(new Point(tank.getPosition().x + tank.getWidth()/2 - 5, tank.getPosition().y), getPaper(), 10, 20, tank.getDirection());
+        Bullet bullet = new DefaultBullet(tank, getPaper(), 10, 20);
         bullet.setProcesser(getCompProcesser());
         bullet.setGraphics(getCompGraphics());
+        bullet.pointTo(tank.getDirection());
         items.add(bullet);
         bullet.go();
     }
