@@ -21,6 +21,7 @@ public abstract class AbstractComponent implements PaintAble, Ciycle {
     protected int width;
     protected int height;
     protected BufferedImage image;
+    protected Manager manager;
 
     protected AbstractComponent(Point position, DrawPanel paper, int width, int height) {
         this.position = position;
@@ -77,5 +78,13 @@ public abstract class AbstractComponent implements PaintAble, Ciycle {
 
     public int getHeight() {
         return height;
+    }
+
+    public void setManager(Manager manager) {
+        this.manager = manager;
+    }
+
+    public Manager getManager() {
+        return manager;
     }
 }

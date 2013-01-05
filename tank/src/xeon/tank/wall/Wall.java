@@ -18,4 +18,7 @@ public abstract class Wall extends AbstractComponent implements MoveProcesser {
         super(position, paper, width, height);
     }
 
+    public void destroy() {
+        getManager().destroyItem(this);
+    }
 }

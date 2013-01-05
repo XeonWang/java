@@ -19,6 +19,8 @@ import java.awt.event.ActionListener;
  */
 public abstract class Bullet extends DirectableComponent {
 
+    private Timer timer;
+
     protected Bullet(Point position, DrawPanel paper, int width, int height) {
         super(position, paper, width, height);
         direction = Direction.NORTH;
@@ -46,9 +48,9 @@ public abstract class Bullet extends DirectableComponent {
 
     public void go() {
         final Bullet bullet = this;
-        Timer timer = new Timer(50, new ActionListener() {
+        timer = new Timer(50, new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public synchronized void actionPerformed(ActionEvent e) {
                 bullet.moveToNext();
             }
         });
@@ -72,4 +74,11 @@ public abstract class Bullet extends DirectableComponent {
         }
     }
 
+    @Override
+    public void end() {
+        if (timer != null){
+            timer.stop();
+        }
+        super.end();
+    }
 }

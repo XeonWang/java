@@ -1,10 +1,7 @@
 package xeon.tank.vehicle;
 
 import xeon.tank.DrawPanel;
-import xeon.tank.abs.EventHandler;
-import xeon.tank.abs.MoveAbleComponent;
-import xeon.tank.abs.MoveAbleManager;
-import xeon.tank.abs.MoveProcesser;
+import xeon.tank.abs.*;
 
 import java.awt.Point;
 import java.util.ArrayList;
@@ -14,7 +11,7 @@ import java.util.ArrayList;
  * Date: 12/30/12
  * Time: 10:20 PM
  */
-public class TankManager extends MoveAbleManager implements MoveProcesser {
+public class TankManager extends MoveAbleManager implements Manager, MoveProcesser {
 
     public TankManager(DrawPanel paper) {
         super(paper);
@@ -36,4 +33,8 @@ public class TankManager extends MoveAbleManager implements MoveProcesser {
         }
     }
 
+    @Override
+    public void destroyItem(Object item) {
+        //To change body of implemented methods use File | Settings | File Templates.
+    }
 }

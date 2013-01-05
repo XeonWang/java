@@ -45,6 +45,6 @@ public class DefaultBullet extends Bullet {
 
     @Override
     public void destroy() {
-        //To change body of implemented methods use File | Settings | File Templates.
+        getManager().destroyItem(this);
     }
 }

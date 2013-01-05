@@ -3,6 +3,7 @@ package xeon.tank.wall;
 import xeon.tank.DrawPanel;
 import xeon.tank.abs.MoveAbleComponent;
 import xeon.tank.abs.MoveProcesser;
+import xeon.tank.bullet.Bullet;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -34,7 +35,12 @@ public class DefaultWall extends Wall {
 
     @Override
     public void processMove(MoveAbleComponent comp, Point position) {
-        comp.denied();
+        if (comp instanceof Bullet) {
+            comp.destroy();
+            destroy();
+        } else {
+            comp.denied();
+        }
     }
 
     @Override

@@ -1,6 +1,7 @@
 package xeon.tank.wall;
 
 import xeon.tank.DrawPanel;
+import xeon.tank.abs.Manager;
 import xeon.tank.abs.MoveAbleComponent;
 import xeon.tank.abs.MoveProcesser;
 
@@ -12,7 +13,7 @@ import java.awt.Point;
  * Date: 12/30/12
  * Time: 5:25 PM
  */
-public class WallManager implements MoveProcesser {
+public class WallManager implements Manager, MoveProcesser {
 
     private Wall[][] items;
     private DrawPanel paper;
@@ -27,6 +28,7 @@ public class WallManager implements MoveProcesser {
         items = new Wall[lineNum][columnNum];
         for (int i = 0; i < 9; i++) {
             Wall wall = new DefaultWall(paper, new Point(itemWidth * i, itemHeight * 2), itemWidth, itemHeight);
+            wall.setManager(this);
             items[2][i] = wall;
         }
     }
@@ -62,13 +64,6 @@ public class WallManager implements MoveProcesser {
                     wall.setGraphics(graphics);
                 }
             }
-        }
-    }
-
-    public void destroyItem(int line, int column) {
-        if (items[line][column] != null) {
-            items[line][column].end();
-            items[line][column] = null;
         }
     }
 
@@ -114,5 +109,18 @@ public class WallManager implements MoveProcesser {
 
     private Wall ifClash(int x, int y) {
         return items[y / itemHeight][x / itemWidth];
+    }
+
+    @Override
+    public void destroyItem(Object wall) {
+        if (!(wall instanceof Wall)) return;
+        for (int i = 0; i < items.length; i++) {
+            for (int j = 0; j < items[i].length; j++) {
+                if (items[i][j] == wall) {
+                    items[i][j].end();
+                    items[i][j] = null;
+                }
+            }
+        }
     }
 }
