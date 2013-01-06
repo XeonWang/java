@@ -4,20 +4,17 @@ import xeon.tank.abs.*;
 import xeon.tank.DrawPanel;
 
 import xeon.tank.bullet.BulletManager;
-import xeon.tank.util.ImageHelper;
 
-import javax.swing.JComponent;
 import java.awt.Point;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
-import java.util.List;
 
 /**
  * User: xeon
  * Date: 12/30/12
  * Time: 9:35 PM
  */
-public abstract class Tank extends DirectableComponent implements Observer {
+public abstract class Tank extends DirectableComponent implements Observer, Autoable {
 
     public Tank(DrawPanel paper, Point position, int width, int height) {
         super(position, paper, width, height);
@@ -54,7 +51,7 @@ public abstract class Tank extends DirectableComponent implements Observer {
         }
     }
 
-    private void spaceKeyPressed() {
+    public void fire(){
         for (PaintAble paintAble : paper.getPaintAbles()) {
             if (paintAble instanceof BulletManager) {
                 ((BulletManager) paintAble).createBullet(this);
@@ -62,34 +59,56 @@ public abstract class Tank extends DirectableComponent implements Observer {
         }
     }
 
+    @Override
+    public void denied() {
+        //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public void destroy() {
+        //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    private void spaceKeyPressed() {
+        fire();
+    }
+
     private void upKeyPressed() {
         if (this.direction != Direction.NORTH){
             pointTo(Direction.NORTH);
-        } else {
-            processMove(new Point(position.x, position.y - height/2));
         }
+        moveNextStep();
     }
 
     private void downKeyPressed() {
         if (this.direction != Direction.SOUTH) {
             pointTo(Direction.SOUTH);
-        } else {
-            processMove(new Point(position.x, position.y + height/2));
         }
+        moveNextStep();
     }
 
     private void leftKeyPressed() {
         if (this.direction != Direction.WEST) {
             pointTo(Direction.WEST);
-        } else {
-            processMove(new Point(position.x - width/2, position.y));
         }
+        moveNextStep();
     }
 
     private void rightKeyPressed() {
         if (this.direction != Direction.EAST) {
             pointTo(Direction.EAST);
-        } else {
+        }
+        moveNextStep();
+    }
+
+    protected void moveNextStep() {
+        if (this.direction == Direction.NORTH){
+            processMove(new Point(position.x, position.y - height/2));
+        } else if (this.direction == Direction.SOUTH) {
+            processMove(new Point(position.x, position.y + height/2));
+        } else if (this.direction == Direction.WEST) {
+            processMove(new Point(position.x - width/2, position.y));
+        } else if (this.direction == Direction.EAST) {
             processMove(new Point(position.x + width/2, position.y));
         }
     }

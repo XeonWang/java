@@ -2,6 +2,7 @@ package xeon.tank.bullet;
 
 import xeon.tank.DrawPanel;
 import xeon.tank.abs.AbstractComponent;
+import xeon.tank.abs.Autoable;
 import xeon.tank.abs.DirectableComponent;
 import xeon.tank.abs.MoveAbleComponent;
 import xeon.tank.vehicle.Direction;
@@ -17,7 +18,7 @@ import java.awt.event.ActionListener;
  * Date: 1/4/13
  * Time: 11:10 AM
  */
-public abstract class Bullet extends DirectableComponent {
+public abstract class Bullet extends DirectableComponent implements Autoable {
 
     private Timer timer;
 
@@ -46,6 +47,7 @@ public abstract class Bullet extends DirectableComponent {
         setPosition(position);
     }
 
+    @Override
     public void go() {
         final Bullet bullet = this;
         timer = new Timer(50, new ActionListener() {

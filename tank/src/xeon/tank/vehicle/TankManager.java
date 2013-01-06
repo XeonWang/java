@@ -21,6 +21,9 @@ public class TankManager extends MoveAbleManager implements Manager, MoveProcess
         if (paper instanceof EventHandler) {
             ((EventHandler) paper).register(tank);
         }
+        tank = new DefaultTank(paper, new Point(60, 60), 40, 40);
+        items.add(tank);
+        tank.go();
     }
 
     @Override
