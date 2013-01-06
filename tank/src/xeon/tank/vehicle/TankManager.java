@@ -17,17 +17,28 @@ public class TankManager extends MoveAbleManager implements Manager, MoveProcess
         super(paper);
         items = new ArrayList<MoveAbleComponent>();
 
-        Tank tank = new DefaultTank(paper, new Point(400, 300), 40, 40);
-        items.add(tank);
-        tank.setManager(this);
+        Tank controledTank = new ControledTank(paper, new Point(400, 300), 40, 40);
+        items.add(controledTank);
+        controledTank.setManager(this);
 
-        if (paper instanceof EventHandler) {
-            ((EventHandler) paper).register(tank);
-        }
-        tank = new DefaultTank(paper, new Point(60, 60), 40, 40);
+        registerListener(controledTank);
+
+        Tank tank = new DefaultTank(paper, new Point(60, 60), 40, 40);
         items.add(tank);
         tank.setManager(this);
-        tank.go();
+        try {
+            tank.go();
+        } catch (UnsupportedOperationException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void registerListener(Observer observer) {
+        ((EventHandler) getPaper()).register(observer);
+    }
+
+    public void removeListener(Observer observer) {
+        ((EventHandler) getPaper()).remove(observer);
     }
 
     @Override

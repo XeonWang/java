@@ -42,6 +42,11 @@ public class DrawPanel extends JPanel implements EventHandler {
     }
 
     @Override
+    public void remove(Observer observer) {
+        observers.remove(observer);
+    }
+
+    @Override
     public void processEvent(InputEvent event) {
         for (Observer observer : observers) {
             observer.update(event);

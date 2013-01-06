@@ -35,8 +35,11 @@ public class DefaultTank extends Tank {
     private Random random = new Random(System.currentTimeMillis());
 
     public DefaultTank(DrawPanel paper, Point position, int width, int height) {
-        super(paper, position, width, height);
-        setImage(image);
+        super(paper, position, width, height, image);
+    }
+
+    public DefaultTank(DrawPanel paper, Point position, int width, int height, BufferedImage image) {
+        super(paper, position, width, height, image);
     }
 
     @Override
@@ -106,5 +109,11 @@ public class DefaultTank extends Tank {
     @Override
     public void setNextProcesser(MoveProcesser nextProcesser) {
         throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void end() {
+        super.end();
+        ((TankManager)getManager()).removeListener(this);
     }
 }

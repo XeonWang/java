@@ -10,4 +10,5 @@ import java.awt.event.InputEvent;
 public interface EventHandler {
     public void processEvent(InputEvent event);
     public void register(Observer observer);
+    public void remove(Observer observer);
 }

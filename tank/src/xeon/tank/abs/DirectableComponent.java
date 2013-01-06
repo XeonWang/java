@@ -5,6 +5,7 @@ import xeon.tank.util.ImageHelper;
 import xeon.tank.vehicle.Direction;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 /**
  * User: xeon
@@ -15,8 +16,11 @@ public abstract class DirectableComponent extends MoveAbleComponent {
 
     protected Direction direction;
 
-    protected DirectableComponent(Point position, DrawPanel paper, int width, int height) {
-        super(position, paper, width, height);
+    protected DirectableComponent() {
+    }
+
+    public DirectableComponent(Point position, DrawPanel paper, int width, int height, BufferedImage image) {
+        super(position, paper, width, height, image);
         direction = Direction.NORTH;
     }
 

@@ -6,5 +6,5 @@ package xeon.tank.abs;
  * Time: 10:45 AM
  */
 public interface Autoable {
-    void go();
+    void go() throws UnsupportedOperationException;
 }

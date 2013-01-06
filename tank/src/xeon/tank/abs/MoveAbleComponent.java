@@ -3,6 +3,7 @@ package xeon.tank.abs;
 import xeon.tank.DrawPanel;
 
 import java.awt.Point;
+import java.awt.image.BufferedImage;
 import java.util.List;
 
 /**
@@ -14,8 +15,11 @@ public abstract class MoveAbleComponent extends AbstractComponent {
 
     private MoveProcesser processer = null;
 
-    protected MoveAbleComponent(Point position, DrawPanel paper, int width, int height) {
-        super(position, paper, width, height);
+    protected MoveAbleComponent() {
+    }
+
+    public MoveAbleComponent(Point position, DrawPanel paper, int width, int height, BufferedImage image) {
+        super(position, paper, width, height, image);
     }
 
     public void processMove(Point position) {

@@ -29,8 +29,7 @@ public class DefaultWall extends Wall {
     }
 
     public DefaultWall(DrawPanel paper, Point position, int width, int height) {
-        super(paper, position, width, height);
-        setImage(image);
+        super(paper, position, width, height, image);
     }
 
     @Override

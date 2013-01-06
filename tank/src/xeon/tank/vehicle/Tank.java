@@ -9,6 +9,7 @@ import javax.swing.*;
 import java.awt.Point;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
 
 /**
  * User: xeon
@@ -19,8 +20,11 @@ public abstract class Tank extends DirectableComponent implements Observer, Auto
 
     protected Timer timer;
 
-    public Tank(DrawPanel paper, Point position, int width, int height) {
-        super(position, paper, width, height);
+    protected Tank() {
+    }
+
+    public Tank(DrawPanel paper, Point position, int width, int height, BufferedImage image) {
+        super(position, paper, width, height, image);
         direction = Direction.NORTH;
     }
 

@@ -29,13 +29,11 @@ public class DefaultBullet extends Bullet {
     }
 
     public DefaultBullet(Point position, DrawPanel paper, int width, int height) {
-        super(position, paper, width, height);
-        setImage(image);
+        super(position, paper, width, height, image);
     }
 
     public DefaultBullet(Tank tank, DrawPanel paper, int width, int height) {
-        super(tank, paper, width, height);
-        setImage(image);
+        super(tank, paper, width, height, image);
     }
 
     @Override

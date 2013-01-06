@@ -4,8 +4,7 @@ package xeon.tank.abs;
 import xeon.tank.DrawPanel;
 
 import javax.swing.JComponent;
-import java.awt.Graphics;
-import java.awt.Point;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 
 /**
@@ -23,11 +22,15 @@ public abstract class AbstractComponent implements PaintAble, Ciycle {
     protected BufferedImage image;
     protected Manager manager;
 
-    protected AbstractComponent(Point position, DrawPanel paper, int width, int height) {
+    protected AbstractComponent() {
+    }
+
+    public AbstractComponent(Point position, DrawPanel paper, int width, int height, BufferedImage image) {
         this.position = position;
         this.paper = paper;
         this.width = width;
         this.height = height;
+        this.image = image;
     }
 
     @Override
@@ -52,7 +55,7 @@ public abstract class AbstractComponent implements PaintAble, Ciycle {
         paper.repaint(position.x, position.y, width, height);
     }
 
-    protected BufferedImage getImage() {
+    public BufferedImage getImage() {
         return image;
     }
 

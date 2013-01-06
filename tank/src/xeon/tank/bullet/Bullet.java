@@ -12,6 +12,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 
 /**
  * User: xeon
@@ -22,13 +23,13 @@ public abstract class Bullet extends DirectableComponent implements Autoable {
 
     private Timer timer;
 
-    protected Bullet(Point position, DrawPanel paper, int width, int height) {
-        super(position, paper, width, height);
+    protected Bullet(Point position, DrawPanel paper, int width, int height, BufferedImage image) {
+        super(position, paper, width, height, image);
         direction = Direction.NORTH;
     }
 
-    protected Bullet(Tank tank, DrawPanel paper, int width, int height) {
-        this(new Point(), paper, width, height);
+    protected Bullet(Tank tank, DrawPanel paper, int width, int height, BufferedImage image) {
+        this(new Point(), paper, width, height, image);
         Point position = null;
         switch (tank.getDirection().getValue() % 360) {
             case 0 :
