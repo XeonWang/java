@@ -9,6 +9,10 @@ import xeon.tank.vehicle.Tank;
 
 import java.awt.Graphics;
 import java.awt.Point;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Properties;
 
 /**
  * User: xeon
@@ -27,10 +31,28 @@ public class WallManager implements Manager<Wall>, MoveProcesser {
         int lineNum = paper.getHeight()/itemHeight + 1;
         int columnNum =  paper.getWidth()/itemWidth + 1;
         items = new Wall[lineNum][columnNum];
-        for (int i = 0; i < 9; i++) {
-            Wall wall = new DefaultWall(paper, new Point(itemWidth * i, itemHeight * 2), itemWidth, itemHeight);
+        File configer = new File("sources/wall.cfg");
+
+        try {
+            loadWalls(configer, paper);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void loadWalls(File configFile, DrawPanel paper) throws IOException {
+        Properties properties = new Properties();
+        properties.load(new FileReader(configFile));
+        String[] defaultWalls = properties.getProperty("default_walls").split(" ");
+        String[] conds;
+        Wall wall;
+        for (String str : defaultWalls) {
+            conds = str.split(",");
+            int lineNum = Integer.parseInt(conds[0]);
+            int columnNum = Integer.parseInt(conds[1]);
+            wall = new DefaultWall(paper, new Point(itemWidth * columnNum, itemHeight * lineNum), itemWidth, itemHeight);
             wall.setManager(this);
-            items[2][i] = wall;
+            items[lineNum][columnNum] = wall;
         }
     }
 
