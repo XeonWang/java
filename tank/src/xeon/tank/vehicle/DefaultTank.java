@@ -4,9 +4,10 @@ import xeon.tank.DrawPanel;
 import xeon.tank.abs.MoveAbleComponent;
 import xeon.tank.abs.MoveProcesser;
 import xeon.tank.bullet.Bullet;
+import xeon.tank.util.Direction;
 
 import javax.imageio.ImageIO;
-import javax.swing.*;
+import javax.swing.Timer;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -43,11 +44,6 @@ public class DefaultTank extends Tank {
     }
 
     @Override
-    public void denied() {
-        this.denied = true;
-    }
-
-    @Override
     public void go() {
         timer = new Timer(300, new ActionListener() {
             @Override
@@ -59,41 +55,6 @@ public class DefaultTank extends Tank {
             }
         });
         timer.start();
-    }
-
-    private void autoMove() {
-        if (random.nextInt(6) == 3) {
-            pointTo(randDirection());
-        } else {
-            moveNextStep();
-            if (denied == true) {
-                pointTo(randDirection());
-                denied = false;
-            }
-        }
-    }
-
-    private Direction randDirection() {
-        int r = random.nextInt(3);
-        switch (r) {
-            case 0:
-                return Direction.NORTH;
-            case 1:
-                return Direction.EAST;
-            case 2:
-                return Direction.SOUTH;
-            case 3:
-                return Direction.WEST;
-        }
-        return null;
-    }
-
-    public boolean ifFire() {
-        if (random.nextInt(8) == 5) {
-            return true;
-        } else {
-            return false;
-        }
     }
 
     @Override
@@ -116,4 +77,41 @@ public class DefaultTank extends Tank {
         super.end();
         ((TankManager)getManager()).removeListener(this);
     }
+
+    @Override
+    public void denied() {
+        this.denied = true;
+    }
+
+    private void autoMove() {
+        if (random.nextInt(6) == 3) {
+            pointTo(randDirection());
+        } else {
+            moveNextStep();
+            if (denied) {
+                pointTo(randDirection());
+                denied = false;
+            }
+        }
+    }
+
+    private Direction randDirection() {
+        int r = random.nextInt(3);
+        switch (r) {
+            case 0:
+                return Direction.NORTH;
+            case 1:
+                return Direction.EAST;
+            case 2:
+                return Direction.SOUTH;
+            case 3:
+                return Direction.WEST;
+        }
+        return null;
+    }
+
+    private boolean ifFire() {
+        return random.nextInt(8) == 5;
+    }
+
 }

@@ -1,13 +1,9 @@
 package xeon.tank.bullet;
 
 import xeon.tank.DrawPanel;
-import xeon.tank.vehicle.Direction;
 import xeon.tank.vehicle.Tank;
 
 import javax.imageio.ImageIO;
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.InputEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -28,17 +24,13 @@ public class DefaultBullet extends Bullet {
         }
     }
 
-    public DefaultBullet(Point position, DrawPanel paper, int width, int height) {
-        super(position, paper, width, height, image);
-    }
-
     public DefaultBullet(Tank tank, DrawPanel paper, int width, int height) {
         super(tank, paper, width, height, image);
     }
 
     @Override
     public void denied() {
-        //To change body of implemented methods use File | Settings | File Templates.
+        throw new UnsupportedOperationException();
     }
 
     @Override

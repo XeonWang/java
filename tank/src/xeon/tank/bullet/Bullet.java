@@ -1,15 +1,13 @@
 package xeon.tank.bullet;
 
 import xeon.tank.DrawPanel;
-import xeon.tank.abs.AbstractComponent;
 import xeon.tank.abs.Autoable;
 import xeon.tank.abs.DirectableComponent;
-import xeon.tank.abs.MoveAbleComponent;
-import xeon.tank.vehicle.Direction;
+import xeon.tank.util.Direction;
 import xeon.tank.vehicle.Tank;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.Timer;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -60,6 +58,14 @@ public abstract class Bullet extends DirectableComponent implements Autoable {
         timer.start();
     }
 
+    @Override
+    public void end() {
+        if (timer != null){
+            timer.stop();
+        }
+        super.end();
+    }
+
     private void moveToNext() {
         switch (getDirection().getValue() % 360) {
             case 0 :
@@ -77,11 +83,4 @@ public abstract class Bullet extends DirectableComponent implements Autoable {
         }
     }
 
-    @Override
-    public void end() {
-        if (timer != null){
-            timer.stop();
-        }
-        super.end();
-    }
 }

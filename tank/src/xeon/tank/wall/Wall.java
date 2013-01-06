@@ -4,8 +4,7 @@ import xeon.tank.DrawPanel;
 import xeon.tank.abs.AbstractComponent;
 import xeon.tank.abs.MoveProcesser;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Point;
 import java.awt.image.BufferedImage;
 
 /**
@@ -19,7 +18,4 @@ public abstract class Wall extends AbstractComponent implements MoveProcesser {
         super(position, paper, width, height, image);
     }
 
-    public void destroy() {
-        getManager().destroyItem(this);
-    }
 }

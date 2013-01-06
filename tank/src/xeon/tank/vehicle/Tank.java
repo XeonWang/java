@@ -1,11 +1,16 @@
 package xeon.tank.vehicle;
 
-import xeon.tank.abs.*;
 import xeon.tank.DrawPanel;
 
+import xeon.tank.abs.Autoable;
+import xeon.tank.abs.DirectableComponent;
+import xeon.tank.abs.MoveProcesser;
+import xeon.tank.abs.Observer;
+import xeon.tank.abs.PaintAble;
 import xeon.tank.bullet.BulletManager;
+import xeon.tank.util.Direction;
 
-import javax.swing.*;
+import javax.swing.Timer;
 import java.awt.Point;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
@@ -20,23 +25,13 @@ public abstract class Tank extends DirectableComponent implements Observer, Auto
 
     protected Timer timer;
 
-    protected Tank() {
-    }
-
     public Tank(DrawPanel paper, Point position, int width, int height, BufferedImage image) {
         super(position, paper, width, height, image);
         direction = Direction.NORTH;
     }
 
-    public void addOperateListener() {
-        if (paper instanceof DrawPanel) {
-            ((DrawPanel)paper).register(this);
-        }
-    }
-
     @Override
     public void update(InputEvent event) {
-//        gotoPosition(new Point(position.x, position.y + height/2));
         if (event instanceof KeyEvent) {
             switch (((KeyEvent)event).getKeyCode()) {
                 case 32 :
@@ -68,12 +63,32 @@ public abstract class Tank extends DirectableComponent implements Observer, Auto
 
     @Override
     public void denied() {
-        //To change body of implemented methods use File | Settings | File Templates.
+
     }
 
     @Override
     public void destroy() {
         getManager().destroyItem(this);
+    }
+
+    @Override
+    public void end() {
+        if (timer != null){
+            timer.stop();
+        }
+        super.end();
+    }
+
+    protected void moveNextStep() {
+        if (this.direction == Direction.NORTH){
+            processMove(new Point(position.x, position.y - height/2));
+        } else if (this.direction == Direction.SOUTH) {
+            processMove(new Point(position.x, position.y + height/2));
+        } else if (this.direction == Direction.WEST) {
+            processMove(new Point(position.x - width/2, position.y));
+        } else if (this.direction == Direction.EAST) {
+            processMove(new Point(position.x + width/2, position.y));
+        }
     }
 
     private void spaceKeyPressed() {
@@ -108,23 +123,4 @@ public abstract class Tank extends DirectableComponent implements Observer, Auto
         moveNextStep();
     }
 
-    protected void moveNextStep() {
-        if (this.direction == Direction.NORTH){
-            processMove(new Point(position.x, position.y - height/2));
-        } else if (this.direction == Direction.SOUTH) {
-            processMove(new Point(position.x, position.y + height/2));
-        } else if (this.direction == Direction.WEST) {
-            processMove(new Point(position.x - width/2, position.y));
-        } else if (this.direction == Direction.EAST) {
-            processMove(new Point(position.x + width/2, position.y));
-        }
-    }
-
-    @Override
-    public void end() {
-        if (timer != null){
-            timer.stop();
-        }
-        super.end();
-    }
 }

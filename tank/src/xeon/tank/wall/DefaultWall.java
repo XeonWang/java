@@ -6,8 +6,7 @@ import xeon.tank.abs.MoveProcesser;
 import xeon.tank.bullet.Bullet;
 
 import javax.imageio.ImageIO;
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;

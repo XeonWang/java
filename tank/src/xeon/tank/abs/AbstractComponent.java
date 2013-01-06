@@ -3,8 +3,8 @@ package xeon.tank.abs;
 
 import xeon.tank.DrawPanel;
 
-import javax.swing.JComponent;
-import java.awt.*;
+import java.awt.Graphics;
+import java.awt.Point;
 import java.awt.image.BufferedImage;
 
 /**
@@ -12,7 +12,7 @@ import java.awt.image.BufferedImage;
  * Date: 12/30/12
  * Time: 9:38 PM
  */
-public abstract class AbstractComponent implements PaintAble, Ciycle {
+public abstract class AbstractComponent <T extends AbstractComponent> implements PaintAble, Ciycle {
 
     protected Point position;
     protected DrawPanel paper;
@@ -20,10 +20,7 @@ public abstract class AbstractComponent implements PaintAble, Ciycle {
     protected int width;
     protected int height;
     protected BufferedImage image;
-    protected Manager manager;
-
-    protected AbstractComponent() {
-    }
+    protected Manager<T> manager;
 
     public AbstractComponent(Point position, DrawPanel paper, int width, int height, BufferedImage image) {
         this.position = position;
@@ -31,6 +28,10 @@ public abstract class AbstractComponent implements PaintAble, Ciycle {
         this.width = width;
         this.height = height;
         this.image = image;
+    }
+
+    public void destroy() {
+         getManager().destroyItem((T) this);
     }
 
     @Override
@@ -83,11 +84,20 @@ public abstract class AbstractComponent implements PaintAble, Ciycle {
         return height;
     }
 
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
     public void setManager(Manager manager) {
         this.manager = manager;
     }
 
-    public Manager getManager() {
+    public Manager<T> getManager() {
         return manager;
     }
+
 }

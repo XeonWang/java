@@ -2,7 +2,7 @@ package xeon.tank.abs;
 
 import xeon.tank.DrawPanel;
 import xeon.tank.util.ImageHelper;
-import xeon.tank.vehicle.Direction;
+import xeon.tank.util.Direction;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -16,9 +16,6 @@ public abstract class DirectableComponent extends MoveAbleComponent {
 
     protected Direction direction;
 
-    protected DirectableComponent() {
-    }
-
     public DirectableComponent(Point position, DrawPanel paper, int width, int height, BufferedImage image) {
         super(position, paper, width, height, image);
         direction = Direction.NORTH;
@@ -30,18 +27,18 @@ public abstract class DirectableComponent extends MoveAbleComponent {
         switch (rotateDegree){
             case 90:
                 setImage(ImageHelper.rotate90ToRight(getImage()));
-                int temp = width;
-                width = height;
-                height = temp;
+                int temp = getWidth();
+                setWidth(getHeight());
+                setHeight(temp);
                 break;
             case 180:
                 setImage(ImageHelper.rotate180(getImage()));
                 break;
             case 270:
                 setImage(ImageHelper.rotate90ToLeft(getImage()));
-                temp = width;
-                width = height;
-                height = temp;
+                temp = getWidth();
+                setWidth(getHeight());
+                setHeight(temp);
                 break;
         }
         this.direction = this.direction.rotate(rotateDegree);

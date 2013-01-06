@@ -27,7 +27,7 @@ public class ImageHelper {
     public static BufferedImage rotate90ToLeft( BufferedImage inputImage ){
         int width = inputImage.getWidth();
         int height = inputImage.getHeight();
-        BufferedImage returnImage = new BufferedImage( height, width , inputImage.getType()  );
+        BufferedImage returnImage = new BufferedImage( height, width, inputImage.getType()  );
 
         for( int x = 0; x < width; x++ ) {
             for( int y = 0; y < height; y++ ) {
@@ -41,7 +41,7 @@ public class ImageHelper {
         int width = inputImage.getWidth();
         int height = inputImage.getHeight();
 
-        BufferedImage returnImage = new BufferedImage( height, width , inputImage.getType()  );
+        BufferedImage returnImage = new BufferedImage( height, width, inputImage.getType()  );
 
         for( int x = 0; x < width; x++ ) {
             for( int y = 0; y < height; y++ ) {

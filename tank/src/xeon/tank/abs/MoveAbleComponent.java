@@ -15,9 +15,6 @@ public abstract class MoveAbleComponent extends AbstractComponent {
 
     private MoveProcesser processer = null;
 
-    protected MoveAbleComponent() {
-    }
-
     public MoveAbleComponent(Point position, DrawPanel paper, int width, int height, BufferedImage image) {
         super(position, paper, width, height, image);
     }

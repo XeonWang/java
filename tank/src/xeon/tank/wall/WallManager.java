@@ -4,6 +4,8 @@ import xeon.tank.DrawPanel;
 import xeon.tank.abs.Manager;
 import xeon.tank.abs.MoveAbleComponent;
 import xeon.tank.abs.MoveProcesser;
+import xeon.tank.bullet.Bullet;
+import xeon.tank.vehicle.Tank;
 
 import java.awt.Graphics;
 import java.awt.Point;
@@ -13,16 +15,15 @@ import java.awt.Point;
  * Date: 12/30/12
  * Time: 5:25 PM
  */
-public class WallManager implements Manager, MoveProcesser {
+public class WallManager implements Manager<Wall>, MoveProcesser {
 
-    private Wall[][] items;
-    private DrawPanel paper;
-    private MoveProcesser nextProcesser;
     private static int itemWidth = 20;
     private static int itemHeight = 20;
 
+    private Wall[][] items;
+    private MoveProcesser nextProcesser;
+
     public WallManager(DrawPanel paper) {
-        this.paper = paper;
         int lineNum = paper.getHeight()/itemHeight + 1;
         int columnNum =  paper.getWidth()/itemWidth + 1;
         items = new Wall[lineNum][columnNum];
@@ -92,7 +93,11 @@ public class WallManager implements Manager, MoveProcesser {
                 }
             }
         } catch (ArrayIndexOutOfBoundsException e) {
-            comp.denied();
+            if (comp instanceof Tank){
+                comp.denied();
+            } else if (comp instanceof Bullet) {
+                comp.destroy();
+            }
             return;
         }
 
@@ -103,17 +108,8 @@ public class WallManager implements Manager, MoveProcesser {
         }
     }
 
-    public void setNextProcesser(MoveProcesser nextProcesser) {
-        this.nextProcesser = nextProcesser;
-    }
-
-    private Wall ifClash(int x, int y) {
-        return items[y / itemHeight][x / itemWidth];
-    }
-
     @Override
-    public void destroyItem(Object wall) {
-        if (!(wall instanceof Wall)) return;
+    public void destroyItem(Wall wall) {
         for (int i = 0; i < items.length; i++) {
             for (int j = 0; j < items[i].length; j++) {
                 if (items[i][j] == wall) {
@@ -123,4 +119,13 @@ public class WallManager implements Manager, MoveProcesser {
             }
         }
     }
+
+    private Wall ifClash(int x, int y) {
+        return items[y / itemHeight][x / itemWidth];
+    }
+
+    public void setNextProcesser(MoveProcesser nextProcesser) {
+        this.nextProcesser = nextProcesser;
+    }
+
 }

@@ -2,8 +2,8 @@ package xeon.tank.abs;
 
 import xeon.tank.DrawPanel;
 
-import java.awt.*;
-import java.util.ArrayList;
+import java.awt.Graphics;
+import java.awt.Point;
 import java.util.List;
 
 /**
@@ -50,10 +50,6 @@ public abstract class MoveAbleManager implements MoveProcesser {
         for (MoveAbleComponent comp : items) {
             comp.setGraphics(graphics);
         }
-    }
-
-    public List<MoveAbleComponent> getItems() {
-        return items;
     }
 
     public void setNextProcesser(MoveProcesser nextProcesser) {

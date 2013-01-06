@@ -4,11 +4,8 @@ import xeon.tank.abs.MoveProcesser;
 import xeon.tank.bullet.BulletManager;
 import xeon.tank.vehicle.TankManager;
 import xeon.tank.wall.WallManager;
-import xeon.tank.abs.PaintAble;
 
-import javax.swing.JFrame;
-import javax.swing.JMenuBar;
-import javax.swing.SwingUtilities;
+import javax.swing.*;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -20,23 +17,27 @@ import java.awt.Dimension;
  */
 public class Main {
     public static void ceateAndShowGUI(){
+
         JFrame frame = new JFrame("Tank");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         JMenuBar menuBar = new JMenuBar();
         menuBar.setBackground(new Color(145, 165, 126));
         menuBar.setPreferredSize(new Dimension(600, 30));
 
         DrawPanel drawPanel = new DrawPanel(600, 570);
+
         MoveProcesser wallManager = new WallManager(drawPanel);
         drawPanel.addComponent(wallManager);
         TankManager tankManager = new TankManager(drawPanel);
         drawPanel.addComponent(tankManager);
         BulletManager bulletManager = new BulletManager(drawPanel);
         drawPanel.addComponent(bulletManager);
+
         wallManager.setNextProcesser(tankManager);
         tankManager.installMoveProcesser(wallManager);
         bulletManager.installMoveProcesser(wallManager);
+
         drawPanel.setFocusable(true);
         drawPanel.requestFocusInWindow();
         drawPanel.addKeyListener(new OperateListener(drawPanel));

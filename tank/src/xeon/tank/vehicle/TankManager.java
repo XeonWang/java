@@ -11,7 +11,7 @@ import java.util.ArrayList;
  * Date: 12/30/12
  * Time: 10:20 PM
  */
-public class TankManager extends MoveAbleManager implements Manager, MoveProcesser {
+public class TankManager extends MoveAbleManager implements Manager<Tank>, MoveProcesser {
 
     public TankManager(DrawPanel paper) {
         super(paper);
@@ -34,11 +34,11 @@ public class TankManager extends MoveAbleManager implements Manager, MoveProcess
     }
 
     public void registerListener(Observer observer) {
-        ((EventHandler) getPaper()).register(observer);
+        getPaper().register(observer);
     }
 
     public void removeListener(Observer observer) {
-        ((EventHandler) getPaper()).remove(observer);
+        getPaper().remove(observer);
     }
 
     @Override
@@ -57,10 +57,8 @@ public class TankManager extends MoveAbleManager implements Manager, MoveProcess
     }
 
     @Override
-    public void destroyItem(Object item) {
-        if (item instanceof Tank) {
-            ((Tank)item).end();
-            items.remove(item);
-        }
+    public void destroyItem(Tank tank) {
+        tank.end();
+        items.remove(tank);
     }
 }

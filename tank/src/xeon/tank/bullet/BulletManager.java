@@ -15,7 +15,7 @@ import java.util.ArrayList;
  * Date: 1/4/13
  * Time: 11:20 AM
  */
-public class BulletManager extends MoveAbleManager implements Manager, MoveProcesser {
+public class BulletManager extends MoveAbleManager implements Manager<Bullet>, MoveProcesser {
 
     public BulletManager(DrawPanel paper) {
         super(paper);
@@ -43,9 +43,8 @@ public class BulletManager extends MoveAbleManager implements Manager, MoveProce
     }
 
     @Override
-    public void destroyItem(Object item) {
-        if (!(item instanceof Bullet)) return;
-        ((Bullet) item).end();
+    public void destroyItem(Bullet item) {
+        item.end();
         items.remove(item);
     }
 }
