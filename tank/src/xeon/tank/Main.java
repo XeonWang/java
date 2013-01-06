@@ -16,7 +16,7 @@ import java.awt.Dimension;
  * Time: 11:36 AM
  */
 public class Main {
-    public static void ceateAndShowGUI(){
+    public static void createAndShowGUI(){
 
         JFrame frame = new JFrame("Tank");
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -54,7 +54,7 @@ public class Main {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                ceateAndShowGUI();
+                createAndShowGUI();
             }
         });
     }
