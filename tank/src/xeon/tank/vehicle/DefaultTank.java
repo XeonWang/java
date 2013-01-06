@@ -33,7 +33,7 @@ public class DefaultTank extends Tank {
     }
 
     private boolean denied;
-    private Random random = new Random(System.currentTimeMillis());
+    private Random random = new Random((long)(Math.random() * 1000));
 
     public DefaultTank(DrawPanel paper, Point position, int width, int height) {
         super(paper, position, width, height, image);
@@ -60,8 +60,10 @@ public class DefaultTank extends Tank {
     @Override
     public void processMove(MoveAbleComponent comp, Point position) {
         if (comp instanceof Bullet) {
-            comp.destroy();
-            destroy();
+            if (getTeam() != ((Bullet)comp).getOwner().getTeam()) {
+                comp.destroy();
+                destroy();
+            }
         } else {
             comp.denied();
         }

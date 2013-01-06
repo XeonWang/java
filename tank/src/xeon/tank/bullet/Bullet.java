@@ -19,6 +19,7 @@ import java.awt.image.BufferedImage;
  */
 public abstract class Bullet extends DirectableComponent implements Autoable {
 
+    private Tank owner;
     private Timer timer;
 
     protected Bullet(Point position, DrawPanel paper, int width, int height, BufferedImage image) {
@@ -28,6 +29,7 @@ public abstract class Bullet extends DirectableComponent implements Autoable {
 
     protected Bullet(Tank tank, DrawPanel paper, int width, int height, BufferedImage image) {
         this(new Point(), paper, width, height, image);
+        setOwner(tank);
         Point position = null;
         switch (tank.getDirection().getValue() % 360) {
             case 0 :
@@ -83,4 +85,11 @@ public abstract class Bullet extends DirectableComponent implements Autoable {
         }
     }
 
+    protected void setOwner(Tank owner) {
+        this.owner = owner;
+    }
+
+    public Tank getOwner() {
+        return owner;
+    }
 }

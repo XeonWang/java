@@ -1,9 +1,10 @@
 package xeon.tank.vehicle;
 
 import xeon.tank.DrawPanel;
+import xeon.tank.util.Team;
 
 import javax.imageio.ImageIO;
-import java.awt.Point;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -26,6 +27,10 @@ public class ControledTank extends DefaultTank {
 
     public ControledTank(DrawPanel paper, Point position, int width, int height) {
         super(paper, position, width, height, image);
+    }
+
+    public Team getTeam() {
+        return Team.WE;
     }
 
 }

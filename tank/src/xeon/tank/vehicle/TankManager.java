@@ -23,11 +23,15 @@ public class TankManager extends MoveAbleManager implements Manager<Tank>, MoveP
 
         registerListener(controledTank);
 
-        Tank tank = new DefaultTank(paper, new Point(60, 60), 40, 40);
-        items.add(tank);
-        tank.setManager(this);
+        Tank tank1 = new DefaultTank(paper, new Point(60, 60), 40, 40);
+        Tank tank2 = new DefaultTank(paper, new Point(100, 80), 40, 40);
+        items.add(tank1);
+        items.add(tank2);
+        tank1.setManager(this);
+        tank2.setManager(this);
         try {
-            tank.go();
+            tank1.go();
+            tank2.go();
         } catch (UnsupportedOperationException e) {
             e.printStackTrace();
         }

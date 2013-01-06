@@ -9,6 +9,7 @@ import xeon.tank.abs.Observer;
 import xeon.tank.abs.PaintAble;
 import xeon.tank.bullet.BulletManager;
 import xeon.tank.util.Direction;
+import xeon.tank.util.Team;
 
 import javax.swing.Timer;
 import java.awt.Point;
@@ -123,4 +124,7 @@ public abstract class Tank extends DirectableComponent implements Observer, Auto
         moveNextStep();
     }
 
+    public Team getTeam() {
+        return Team.ANIMY;
+    }
 }
