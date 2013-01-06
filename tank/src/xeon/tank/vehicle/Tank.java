@@ -5,6 +5,7 @@ import xeon.tank.DrawPanel;
 
 import xeon.tank.bullet.BulletManager;
 
+import javax.swing.*;
 import java.awt.Point;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
@@ -14,7 +15,9 @@ import java.awt.event.KeyEvent;
  * Date: 12/30/12
  * Time: 9:35 PM
  */
-public abstract class Tank extends DirectableComponent implements Observer, Autoable {
+public abstract class Tank extends DirectableComponent implements Observer, Autoable, MoveProcesser {
+
+    protected Timer timer;
 
     public Tank(DrawPanel paper, Point position, int width, int height) {
         super(position, paper, width, height);
@@ -66,7 +69,7 @@ public abstract class Tank extends DirectableComponent implements Observer, Auto
 
     @Override
     public void destroy() {
-        //To change body of implemented methods use File | Settings | File Templates.
+        getManager().destroyItem(this);
     }
 
     private void spaceKeyPressed() {
@@ -111,5 +114,13 @@ public abstract class Tank extends DirectableComponent implements Observer, Auto
         } else if (this.direction == Direction.EAST) {
             processMove(new Point(position.x + width/2, position.y));
         }
+    }
+
+    @Override
+    public void end() {
+        if (timer != null){
+            timer.stop();
+        }
+        super.end();
     }
 }

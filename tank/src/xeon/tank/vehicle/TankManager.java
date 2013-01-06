@@ -16,19 +16,28 @@ public class TankManager extends MoveAbleManager implements Manager, MoveProcess
     public TankManager(DrawPanel paper) {
         super(paper);
         items = new ArrayList<MoveAbleComponent>();
+
         Tank tank = new DefaultTank(paper, new Point(400, 300), 40, 40);
         items.add(tank);
+        tank.setManager(this);
+
         if (paper instanceof EventHandler) {
             ((EventHandler) paper).register(tank);
         }
         tank = new DefaultTank(paper, new Point(60, 60), 40, 40);
         items.add(tank);
+        tank.setManager(this);
         tank.go();
     }
 
     @Override
     public void processMove(MoveAbleComponent comp, Point position) {
-        //TODO
+        for (Object item : items) {
+            if (ifClash(comp, position, ((Tank)item))) {
+                ((Tank)item).processMove(comp, position);
+                break;
+            }
+        }
         if (nextProcesser != null) {
             nextProcesser.processMove(comp, position);
         } else {
@@ -38,6 +47,9 @@ public class TankManager extends MoveAbleManager implements Manager, MoveProcess
 
     @Override
     public void destroyItem(Object item) {
-        //To change body of implemented methods use File | Settings | File Templates.
+        if (item instanceof Tank) {
+            ((Tank)item).end();
+            items.remove(item);
+        }
     }
 }

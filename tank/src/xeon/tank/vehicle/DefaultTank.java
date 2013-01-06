@@ -1,6 +1,9 @@
 package xeon.tank.vehicle;
 
 import xeon.tank.DrawPanel;
+import xeon.tank.abs.MoveAbleComponent;
+import xeon.tank.abs.MoveProcesser;
+import xeon.tank.bullet.Bullet;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -42,13 +45,8 @@ public class DefaultTank extends Tank {
     }
 
     @Override
-    public void destroy() {
-        clean();
-    }
-
-    @Override
     public void go() {
-        Timer timer = new Timer(300, new ActionListener() {
+        timer = new Timer(300, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 autoMove();
@@ -93,5 +91,20 @@ public class DefaultTank extends Tank {
         } else {
             return false;
         }
+    }
+
+    @Override
+    public void processMove(MoveAbleComponent comp, Point position) {
+        if (comp instanceof Bullet) {
+            comp.destroy();
+            destroy();
+        } else {
+            comp.denied();
+        }
+    }
+
+    @Override
+    public void setNextProcesser(MoveProcesser nextProcesser) {
+        throw new UnsupportedOperationException();
     }
 }

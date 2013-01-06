@@ -41,7 +41,7 @@ public abstract class Bullet extends DirectableComponent implements Autoable {
                 position = new Point(tank.getPosition().x + (tank.getWidth() - width) / 2, tank.getPosition().y + tank.getHeight());
                 break;
             case 270 :
-                position = new Point(tank.getPosition().x - width, tank.getPosition().y + (tank.getHeight() - width) / 2);
+                position = new Point(tank.getPosition().x - height, tank.getPosition().y + (tank.getHeight() - width) / 2);
                 break;
         }
         setPosition(position);
