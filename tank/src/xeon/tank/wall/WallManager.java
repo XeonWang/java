@@ -29,8 +29,8 @@ public class WallManager implements Manager<Wall>, PaintableProcesser {
     private PaintableProcesser nextProcesser;
 
     public WallManager(DrawPanel paper) {
-        int lineNum = paper.getHeight()/itemHeight + 1;
-        int columnNum =  paper.getWidth()/itemWidth + 1;
+        int lineNum = paper.getHeight()/itemHeight;
+        int columnNum =  paper.getWidth()/itemWidth;
         items = new Wall[lineNum][columnNum];
         File configer = new File("sources/wall.cfg");
 
