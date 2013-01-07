@@ -5,6 +5,7 @@ import xeon.tank.abs.*;
 import xeon.tank.processer.BulletProcesser;
 import xeon.tank.processer.DefaultBulletProcesser;
 import xeon.tank.processer.ExternalBulletProcesser;
+import xeon.tank.util.State;
 
 import java.awt.Point;
 import java.util.ArrayList;
@@ -24,6 +25,7 @@ public class TankManager extends MoveAbleManager implements Manager<Tank>, Paint
         items.add(controledTank);
         controledTank.setManager(this);
         controledTank.setBulletProcesser(new DefaultBulletProcesser(controledTank));
+        controledTank.changeState(State.PROTECTER);
 
         registerListener(controledTank);
 

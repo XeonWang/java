@@ -7,6 +7,7 @@ import xeon.tank.abs.PaintableProcesser;
 import xeon.tank.bullet.BulletManager;
 import xeon.tank.processer.BulletProcesser;
 import xeon.tank.util.Direction;
+import xeon.tank.util.State;
 import xeon.tank.util.Team;
 
 import javax.swing.Timer;
@@ -60,6 +61,8 @@ public abstract class Tank extends DirectableComponent implements Observer, Auto
             }
         }
     }
+
+    public abstract void changeState(State state);
 
     @Override
     public void denied() {

@@ -4,7 +4,10 @@ import xeon.tank.DrawPanel;
 import xeon.tank.abs.MoveAbleComponent;
 import xeon.tank.abs.PaintableProcesser;
 import xeon.tank.bullet.Bullet;
+import xeon.tank.processer.DefaultBulletProcesser;
+import xeon.tank.processer.ExternalBulletProcesser;
 import xeon.tank.util.Direction;
+import xeon.tank.util.State;
 
 import javax.imageio.ImageIO;
 import javax.swing.Timer;
@@ -41,6 +44,26 @@ public class DefaultTank extends Tank {
 
     public DefaultTank(DrawPanel paper, Point position, int width, int height, BufferedImage image) {
         super(paper, position, width, height, image);
+    }
+
+    @Override
+    public void changeState(State state) {
+        Direction direction = getDirection();
+        if (state == State.DEFAULT){
+            pointTo(Direction.NORTH);
+            setImage(image);
+            setBulletProcesser(new DefaultBulletProcesser(this));
+            pointTo(direction);
+        } else if (state == State.PROTECTER) {
+            try {
+                changeDirection(Direction.NORTH);
+                setImage(ImageIO.read(new File("sources/BigTank.png")));
+                setBulletProcesser(new ExternalBulletProcesser(this));
+                changeDirection(direction);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @Override

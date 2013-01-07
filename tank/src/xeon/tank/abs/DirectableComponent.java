@@ -22,6 +22,12 @@ public abstract class DirectableComponent extends MoveAbleComponent {
     }
 
     public void pointTo(Direction direction) {
+        changeDirection(direction);
+        clean();
+        paint();
+    }
+
+    public void changeDirection(Direction direction) {
         int rotateDegree = direction.getValue() - (this.direction.getValue() % 360);
         rotateDegree = rotateDegree < 0 ? rotateDegree + 360 : rotateDegree;
         switch (rotateDegree){
@@ -42,8 +48,6 @@ public abstract class DirectableComponent extends MoveAbleComponent {
                 break;
         }
         this.direction = this.direction.rotate(rotateDegree);
-        clean();
-        paint();
     }
 
     public Direction getDirection() {

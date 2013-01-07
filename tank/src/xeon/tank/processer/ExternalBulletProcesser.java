@@ -2,6 +2,7 @@ package xeon.tank.processer;
 
 import xeon.tank.abs.MoveAbleComponent;
 import xeon.tank.bullet.Bullet;
+import xeon.tank.util.State;
 import xeon.tank.vehicle.Tank;
 
 import java.awt.Point;
@@ -21,7 +22,7 @@ public class ExternalBulletProcesser extends BulletProcesser {
     public void processMove(MoveAbleComponent comp, Point position) {
         if (getTank().getTeam() != ((Bullet)comp).getOwner().getTeam()) {
             comp.destroy();
-            getTank().setBulletProcesser(new DefaultBulletProcesser(getTank()));
+            getTank().changeState(State.DEFAULT);
         }
     }
 }
