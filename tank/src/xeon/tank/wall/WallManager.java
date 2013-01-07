@@ -1,9 +1,10 @@
 package xeon.tank.wall;
 
 import xeon.tank.DrawPanel;
+import xeon.tank.abs.AbstractComponent;
 import xeon.tank.abs.Manager;
 import xeon.tank.abs.MoveAbleComponent;
-import xeon.tank.abs.MoveProcesser;
+import xeon.tank.abs.PaintableProcesser;
 import xeon.tank.bullet.Bullet;
 import xeon.tank.vehicle.Tank;
 
@@ -19,13 +20,13 @@ import java.util.Properties;
  * Date: 12/30/12
  * Time: 5:25 PM
  */
-public class WallManager implements Manager<Wall>, MoveProcesser {
+public class WallManager implements Manager<Wall>, PaintableProcesser {
 
     private static int itemWidth = 20;
     private static int itemHeight = 20;
 
     private Wall[][] items;
-    private MoveProcesser nextProcesser;
+    private PaintableProcesser nextProcesser;
 
     public WallManager(DrawPanel paper) {
         int lineNum = paper.getHeight()/itemHeight + 1;
@@ -131,7 +132,7 @@ public class WallManager implements Manager<Wall>, MoveProcesser {
     }
 
     @Override
-    public void destroyItem(Wall wall) {
+    public void destroyItem(AbstractComponent<Wall> wall) {
         for (int i = 0; i < items.length; i++) {
             for (int j = 0; j < items[i].length; j++) {
                 if (items[i][j] == wall) {
@@ -146,7 +147,7 @@ public class WallManager implements Manager<Wall>, MoveProcesser {
         return items[y / itemHeight][x / itemWidth];
     }
 
-    public void setNextProcesser(MoveProcesser nextProcesser) {
+    public void setNextProcesser(PaintableProcesser nextProcesser) {
         this.nextProcesser = nextProcesser;
     }
 

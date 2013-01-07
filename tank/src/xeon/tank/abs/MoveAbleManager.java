@@ -11,19 +11,19 @@ import java.util.List;
  * Date: 1/4/13
  * Time: 1:34 PM
  */
-public abstract class MoveAbleManager implements MoveProcesser {
+public abstract class MoveAbleManager implements PaintableProcesser {
 
     private DrawPanel paper;
     protected List<MoveAbleComponent> items;
-    protected MoveProcesser nextProcesser;
-    private MoveProcesser compProcesser;
+    protected PaintableProcesser nextProcesser;
+    private PaintableProcesser compProcesser;
     private Graphics compGraphics;
 
     protected MoveAbleManager(DrawPanel paper) {
         this.paper = paper;
     }
 
-    public void installMoveProcesser(MoveProcesser processer) {
+    public void installMoveProcesser(PaintableProcesser processer) {
         this.compProcesser = processer;
         for (MoveAbleComponent comp : items) {
             comp.setProcesser(processer);
@@ -52,7 +52,7 @@ public abstract class MoveAbleManager implements MoveProcesser {
         }
     }
 
-    public void setNextProcesser(MoveProcesser nextProcesser) {
+    public void setNextProcesser(PaintableProcesser nextProcesser) {
         this.nextProcesser = nextProcesser;
     }
 
@@ -72,7 +72,7 @@ public abstract class MoveAbleManager implements MoveProcesser {
         return paper;
     }
 
-    protected MoveProcesser getCompProcesser() {
+    protected PaintableProcesser getCompProcesser() {
         return compProcesser;
     }
 

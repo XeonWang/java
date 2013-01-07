@@ -32,9 +32,4 @@ public class DefaultBullet extends Bullet {
     public void denied() {
         throw new UnsupportedOperationException();
     }
-
-    @Override
-    public void destroy() {
-        getManager().destroyItem(this);
-    }
 }

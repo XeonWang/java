@@ -2,12 +2,10 @@ package xeon.tank.vehicle;
 
 import xeon.tank.DrawPanel;
 
-import xeon.tank.abs.Autoable;
-import xeon.tank.abs.DirectableComponent;
-import xeon.tank.abs.MoveProcesser;
-import xeon.tank.abs.Observer;
-import xeon.tank.abs.PaintAble;
+import xeon.tank.abs.*;
+import xeon.tank.abs.PaintableProcesser;
 import xeon.tank.bullet.BulletManager;
+import xeon.tank.processer.BulletProcesser;
 import xeon.tank.util.Direction;
 import xeon.tank.util.Team;
 
@@ -22,8 +20,9 @@ import java.awt.image.BufferedImage;
  * Date: 12/30/12
  * Time: 9:35 PM
  */
-public abstract class Tank extends DirectableComponent implements Observer, Autoable, MoveProcesser {
+public abstract class Tank extends DirectableComponent implements Observer, Autoable, PaintableProcesser {
 
+    private BulletProcesser bulletProcesser;
     protected Timer timer;
 
     public Tank(DrawPanel paper, Point position, int width, int height, BufferedImage image) {
@@ -126,5 +125,13 @@ public abstract class Tank extends DirectableComponent implements Observer, Auto
 
     public Team getTeam() {
         return Team.ANIMY;
+    }
+
+    public void setBulletProcesser(BulletProcesser bulletProcesser) {
+        this.bulletProcesser = bulletProcesser;
+    }
+
+    public BulletProcesser getBulletProcesser() {
+        return bulletProcesser;
     }
 }

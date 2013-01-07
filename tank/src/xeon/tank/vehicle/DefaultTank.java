@@ -2,7 +2,7 @@ package xeon.tank.vehicle;
 
 import xeon.tank.DrawPanel;
 import xeon.tank.abs.MoveAbleComponent;
-import xeon.tank.abs.MoveProcesser;
+import xeon.tank.abs.PaintableProcesser;
 import xeon.tank.bullet.Bullet;
 import xeon.tank.util.Direction;
 
@@ -60,17 +60,14 @@ public class DefaultTank extends Tank {
     @Override
     public void processMove(MoveAbleComponent comp, Point position) {
         if (comp instanceof Bullet) {
-            if (getTeam() != ((Bullet)comp).getOwner().getTeam()) {
-                comp.destroy();
-                destroy();
-            }
+            getBulletProcesser().processMove(comp, position);
         } else {
             comp.denied();
         }
     }
 
     @Override
-    public void setNextProcesser(MoveProcesser nextProcesser) {
+    public void setNextProcesser(PaintableProcesser nextProcesser) {
         throw new UnsupportedOperationException();
     }
 

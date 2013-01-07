@@ -2,6 +2,9 @@ package xeon.tank.vehicle;
 
 import xeon.tank.DrawPanel;
 import xeon.tank.abs.*;
+import xeon.tank.processer.BulletProcesser;
+import xeon.tank.processer.DefaultBulletProcesser;
+import xeon.tank.processer.ExternalBulletProcesser;
 
 import java.awt.Point;
 import java.util.ArrayList;
@@ -11,7 +14,7 @@ import java.util.ArrayList;
  * Date: 12/30/12
  * Time: 10:20 PM
  */
-public class TankManager extends MoveAbleManager implements Manager<Tank>, MoveProcesser {
+public class TankManager extends MoveAbleManager implements Manager<Tank>, PaintableProcesser {
 
     public TankManager(DrawPanel paper) {
         super(paper);
@@ -20,6 +23,7 @@ public class TankManager extends MoveAbleManager implements Manager<Tank>, MoveP
         Tank controledTank = new ControledTank(paper, new Point(400, 300), 40, 40);
         items.add(controledTank);
         controledTank.setManager(this);
+        controledTank.setBulletProcesser(new DefaultBulletProcesser(controledTank));
 
         registerListener(controledTank);
 
@@ -28,7 +32,9 @@ public class TankManager extends MoveAbleManager implements Manager<Tank>, MoveP
         items.add(tank1);
         items.add(tank2);
         tank1.setManager(this);
+        tank1.setBulletProcesser(new DefaultBulletProcesser(tank1));
         tank2.setManager(this);
+        tank2.setBulletProcesser(new DefaultBulletProcesser(tank2));
         try {
             tank1.go();
             tank2.go();
@@ -61,7 +67,7 @@ public class TankManager extends MoveAbleManager implements Manager<Tank>, MoveP
     }
 
     @Override
-    public void destroyItem(Tank tank) {
+    public void destroyItem(AbstractComponent<Tank> tank) {
         tank.end();
         items.remove(tank);
     }

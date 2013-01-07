@@ -6,5 +6,5 @@ package xeon.tank.abs;
  * Time: 4:34 PM
  */
 public interface Manager <T extends AbstractComponent> {
-    public void destroyItem(T item);
+    public void destroyItem(AbstractComponent<T> item);
 }

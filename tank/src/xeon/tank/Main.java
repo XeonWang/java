@@ -1,6 +1,6 @@
 package xeon.tank;
 
-import xeon.tank.abs.MoveProcesser;
+import xeon.tank.abs.PaintableProcesser;
 import xeon.tank.bullet.BulletManager;
 import xeon.tank.vehicle.TankManager;
 import xeon.tank.wall.WallManager;
@@ -27,7 +27,7 @@ public class Main {
 
         DrawPanel drawPanel = new DrawPanel(600, 570);
 
-        MoveProcesser wallManager = new WallManager(drawPanel);
+        PaintableProcesser wallManager = new WallManager(drawPanel);
         drawPanel.addComponent(wallManager);
         TankManager tankManager = new TankManager(drawPanel);
         drawPanel.addComponent(tankManager);

@@ -4,7 +4,6 @@ import xeon.tank.DrawPanel;
 
 import java.awt.Point;
 import java.awt.image.BufferedImage;
-import java.util.List;
 
 /**
  * User: xeon
@@ -13,7 +12,7 @@ import java.util.List;
  */
 public abstract class MoveAbleComponent extends AbstractComponent {
 
-    private MoveProcesser processer = null;
+    private PaintableProcesser processer = null;
 
     public MoveAbleComponent(Point position, DrawPanel paper, int width, int height, BufferedImage image) {
         super(position, paper, width, height, image);
@@ -23,7 +22,7 @@ public abstract class MoveAbleComponent extends AbstractComponent {
         processer.processMove(this, position);
     }
 
-    public void setProcesser(MoveProcesser processer) {
+    public void setProcesser(PaintableProcesser processer) {
         this.processer = processer;
     }
 
@@ -34,7 +33,5 @@ public abstract class MoveAbleComponent extends AbstractComponent {
     }
 
     public abstract void denied();
-
-    public abstract void destroy();
 
 }

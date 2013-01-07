@@ -31,7 +31,7 @@ public abstract class AbstractComponent <T extends AbstractComponent> implements
     }
 
     public void destroy() {
-         getManager().destroyItem((T) this);
+         getManager().destroyItem(this);
     }
 
     @Override
@@ -92,7 +92,7 @@ public abstract class AbstractComponent <T extends AbstractComponent> implements
         this.height = height;
     }
 
-    public void setManager(Manager manager) {
+    public void setManager(Manager<T> manager) {
         this.manager = manager;
     }
 

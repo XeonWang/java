@@ -2,7 +2,7 @@ package xeon.tank.wall;
 
 import xeon.tank.DrawPanel;
 import xeon.tank.abs.MoveAbleComponent;
-import xeon.tank.abs.MoveProcesser;
+import xeon.tank.abs.PaintableProcesser;
 import xeon.tank.bullet.Bullet;
 
 import javax.imageio.ImageIO;
@@ -42,7 +42,7 @@ public class DefaultWall extends Wall {
     }
 
     @Override
-    public void setNextProcesser(MoveProcesser nextProcesser) {
+    public void setNextProcesser(PaintableProcesser nextProcesser) {
         throw new UnsupportedOperationException();
     }
 }

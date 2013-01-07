@@ -1,10 +1,7 @@
 package xeon.tank.bullet;
 
 import xeon.tank.DrawPanel;
-import xeon.tank.abs.Manager;
-import xeon.tank.abs.MoveAbleComponent;
-import xeon.tank.abs.MoveAbleManager;
-import xeon.tank.abs.MoveProcesser;
+import xeon.tank.abs.*;
 import xeon.tank.vehicle.Tank;
 
 import java.awt.Point;
@@ -15,7 +12,7 @@ import java.util.ArrayList;
  * Date: 1/4/13
  * Time: 11:20 AM
  */
-public class BulletManager extends MoveAbleManager implements Manager<Bullet>, MoveProcesser {
+public class BulletManager extends MoveAbleManager implements Manager<Bullet>, PaintableProcesser {
 
     public BulletManager(DrawPanel paper) {
         super(paper);
@@ -43,7 +40,7 @@ public class BulletManager extends MoveAbleManager implements Manager<Bullet>, M
     }
 
     @Override
-    public void destroyItem(Bullet item) {
+    public void destroyItem(AbstractComponent<Bullet> item) {
         item.end();
         items.remove(item);
     }
