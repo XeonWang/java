@@ -25,7 +25,7 @@ public class Main {
         menuBar.setBackground(new Color(145, 165, 126));
         menuBar.setPreferredSize(new Dimension(600, 30));
 
-        DrawPanel drawPanel = new DrawPanel(600, 570);
+        DrawPanel drawPanel = new DrawPanel(600, 580);
 
         PaintableProcesser wallManager = new WallManager(drawPanel);
         drawPanel.addComponent(wallManager);
@@ -46,7 +46,7 @@ public class Main {
         frame.getContentPane().add(drawPanel, BorderLayout.CENTER);
 
         frame.pack();
-        frame.setSize(600, 600);
+        frame.setSize(600, 640);
         frame.setVisible(true);
     }
 
