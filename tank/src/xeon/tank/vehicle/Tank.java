@@ -25,6 +25,7 @@ public abstract class Tank extends DirectableComponent implements Observer, Auto
 
     private BulletProcesser bulletProcesser;
     protected Timer timer;
+    private int speed = 4;
 
     public Tank(DrawPanel paper, Point position, int width, int height, BufferedImage image) {
         super(position, paper, width, height, image);
@@ -84,13 +85,13 @@ public abstract class Tank extends DirectableComponent implements Observer, Auto
 
     protected void moveNextStep() {
         if (this.direction == Direction.NORTH){
-            processMove(new Point(position.x, position.y - height/2));
+            processMove(new Point(position.x, position.y - height/getSpeed()));
         } else if (this.direction == Direction.SOUTH) {
-            processMove(new Point(position.x, position.y + height/2));
+            processMove(new Point(position.x, position.y + height/getSpeed()));
         } else if (this.direction == Direction.WEST) {
-            processMove(new Point(position.x - width/2, position.y));
+            processMove(new Point(position.x - width/getSpeed(), position.y));
         } else if (this.direction == Direction.EAST) {
-            processMove(new Point(position.x + width/2, position.y));
+            processMove(new Point(position.x + width/getSpeed(), position.y));
         }
     }
 
@@ -136,5 +137,9 @@ public abstract class Tank extends DirectableComponent implements Observer, Auto
 
     public BulletProcesser getBulletProcesser() {
         return bulletProcesser;
+    }
+
+    public int getSpeed() {
+        return speed;
     }
 }
